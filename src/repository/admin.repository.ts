@@ -43,6 +43,91 @@ export class AdminRepository {
         });
     }
 
+    async countAdminsByRoleId(roleId: number) {
+        return this.db.admin.count({
+            where: {
+                roleId,
+            },
+        });
+    }
+
+    async findAllAdmins() {
+        return this.db.admin.findMany({
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                isSuperAdmin: true,
+                isActive: true,
+                lastLoginAt: true,
+                role: {
+                    select: {
+                        id: true,
+                        name: true,
+                    },
+                },
+                createdAt: true,
+                updatedAt: true,
+            },
+            orderBy: {
+                createdAt: "desc",
+            },
+        });
+    }
+
+    async findAdminByIdWithRole(id: number) {
+        return this.db.admin.findUnique({
+            where: {
+                id,
+            },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                isSuperAdmin: true,
+                isActive: true,
+                lastLoginAt: true,
+                role: {
+                    select: {
+                        id: true,
+                        name: true,
+                    },
+                },
+                createdAt: true,
+                updatedAt: true,
+            },
+        });
+    }
+
+    async updateAdmin(
+        id: number,
+        data: {
+            name?: string;
+            email?: string;
+        }
+    ) {
+        return this.db.admin.update({
+            where: {
+                id,
+            },
+            data,
+        });
+    }
+
+    async updateAdminRole(
+        id: number,
+        roleId: number
+    ) {
+        return this.db.admin.update({
+            where: {
+                id,
+            },
+            data: {
+                roleId,
+            },
+        });
+    }
+
     async findAdminForLogin(email: string) {
         return this.db.admin.findUnique({
             where: { email, },

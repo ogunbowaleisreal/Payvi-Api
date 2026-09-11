@@ -28,6 +28,10 @@ export const ADMIN_PERMISSIONS = [
         description: "Update admin accounts",
     },
     {
+        name: "view_admin",
+        description: "View administrator accounts",
+    },
+    {
         name: "deactivate_admin",
         description: "Deactivate admin accounts",
     },

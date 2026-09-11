@@ -2,7 +2,7 @@ import { Router } from "express";
 
 import {
     AdminAuthController,
-} from "../../controller/admin.auth.controller.js";
+} from "../../controller/admin/admin.auth.controller.js";
 
 import {
     authenticateAdmin,

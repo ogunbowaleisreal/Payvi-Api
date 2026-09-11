@@ -37,6 +37,30 @@ export class AdminRoleRepository {
             },
         });
     }
+
+    async updateRole(
+        id: number,
+        name: string,
+        description?: string
+    ) {
+        return this.db.adminRole.update({
+            where: {
+                id,
+            },
+            data: {
+                name,
+                description: description ?? null,
+            },
+        });
+    }
+
+    async deleteRole(id: number) {
+        return this.db.adminRole.delete({
+            where: {
+                id,
+            },
+        });
+    }
     async findRoleByIdWithPermissions(id: number) {
         return this.db.adminRole.findUnique({
             where: {

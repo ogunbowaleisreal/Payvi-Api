@@ -1,6 +1,6 @@
-import { UserRepository } from "../repository/user.repository.js";
-import { toUserResponse } from "../utils/user.utils.js";
-import type { UpdateProfileInput } from "../interfaces/user.interface.js";
+import { UserRepository } from "../../repository/user.repository.js";
+import { toUserResponse } from "../../utils/user.utils.js";
+import type { UpdateProfileInput } from "../../interfaces/users/user.interface.js";
 
 export class AccountService {
     private userRepository: UserRepository;

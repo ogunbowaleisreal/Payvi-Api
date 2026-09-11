@@ -1,26 +1,26 @@
-import { UserRepository } from "../repository/user.repository.js";
-import type { CreateUserInput, LoginUserInput } from "../interfaces/user.interface.js";
-import { SessionRepository } from "../repository/session.repository.js";
-import { hashPassword, comparePassword, } from "../utils/password.utils.js";
-import { AppError } from "../utils/app-error.js";
+import { UserRepository } from "../../repository/user.repository.js";
+import type { CreateUserInput, LoginUserInput } from "../../interfaces/users/user.interface.js";
+import { SessionRepository } from "../../repository/session.repository.js";
+import { hashPassword, comparePassword, } from "../../utils/password.utils.js";
+import { AppError } from "../../utils/app-error.js";
 import { randomUUID } from "node:crypto";
-import { hashToken } from "../utils/hash.utils.js";
+import { hashToken } from "../../utils/hash.utils.js";
 import {
     generateAccessToken,
     generateRefreshToken,
     generateTwoFactorToken,
     verifyTwoFactorToken,
     verifyRefreshToken
-} from "../utils/jwt.utils.js";
-import { OtpService } from "./shared/otp.service.js";
-import { EmailService } from "./shared/email.service.js";
-import { OtpType } from "../interfaces/otp.interface.js";
-import { verificationOtpTemplate } from "../templates/email/verification-otp.templates.js";
-import { passwordResetOtpTemplate } from "../templates/email/password-reset-otp.templates.js";
-import { twoFactorOtpTemplate } from "../templates/email/two-factor-otp.templates.js";
-import { toUserResponse } from "../utils/user.utils.js";
-import { generateRandomToken } from "../utils/user.utils.js";
-import { RedisService } from "./shared/redis.service.js";
+} from "../../utils/jwt.utils.js";
+import { OtpService } from "../shared/otp.service.js";
+import { EmailService } from "../shared/email.service.js";
+import { OtpType } from "../../interfaces/otp.interface.js";
+import { verificationOtpTemplate } from "../../templates/email/verification-otp.templates.js";
+import { passwordResetOtpTemplate } from "../../templates/email/password-reset-otp.templates.js";
+import { twoFactorOtpTemplate } from "../../templates/email/two-factor-otp.templates.js";
+import { toUserResponse } from "../../utils/user.utils.js";
+import { generateRandomToken } from "../../utils/user.utils.js";
+import { RedisService } from "../shared/redis.service.js";
 
 
 export class UserService {

@@ -1,5 +1,5 @@
 import { prisma } from "../config/prisma.js";
-import type { CreateUserData } from "../interfaces/user.interface.js";
+import type { CreateUserData } from "../interfaces/users/user.interface.js";
 import type { Gender } from "../generated/prisma/client.js";
 
 export class UserRepository {

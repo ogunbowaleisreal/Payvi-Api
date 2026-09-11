@@ -1,9 +1,9 @@
 import type { Request, Response } from "express";
-import { AdminAuthService } from "../services/admin.auth.service.js";
+import { AdminAuthService } from "../../services/admin/admin.auth.service.js";
 import {
     sendSuccess,
-} from "../utils/response.utils.js";
-import type { AdminLoginInput } from "../interfaces/admin.auth.interface.js";
+} from "../../utils/response.utils.js";
+import type { AdminLoginInput } from "../../interfaces/admin/admin.auth.interface.js";
 
 export class AdminAuthController {
     private adminAuthService: AdminAuthService;

@@ -30,6 +30,29 @@ export class AdminRolePermissionRepository {
         });
     }
 
+    async replaceRolePermissions(
+        roleId: number,
+        permissionIds: number[]
+    ) {
+        await this.db.adminRolePermission.deleteMany({
+            where: {
+                roleId,
+            },
+        });
+
+        if (permissionIds.length === 0) {
+            return;
+        }
+
+        await this.db.adminRolePermission.createMany({
+            data: permissionIds.map((permissionId) => ({
+                roleId,
+                permissionId,
+            })),
+            skipDuplicates: true,
+        });
+    }
+
     async removePermissionFromRole(
         roleId: number,
         permissionId: number

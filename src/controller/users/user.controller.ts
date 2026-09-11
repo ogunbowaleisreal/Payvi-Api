@@ -1,11 +1,11 @@
 import type { Request, Response } from "express";
 
-import { UserService } from "../services/user.service.js";
+import { UserService } from "../../services/user/user.service.js";
 
 import {
     sendSuccess,
     sendCreated,
-} from "../utils/response.utils.js";
+} from "../../utils/response.utils.js";
 
 export class UserController {
     private userService: UserService;

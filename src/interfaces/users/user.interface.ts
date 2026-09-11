@@ -1,4 +1,4 @@
-import type { Gender } from "../generated/prisma/client.js";
+import type { Gender } from "../../generated/prisma/client.js";
 export interface CreateUserData {
     name: string;
     email: string;

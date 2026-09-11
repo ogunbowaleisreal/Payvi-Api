@@ -2,9 +2,9 @@ import type {
     Response,
 } from "express";
 
-import { AccountService } from "../services/user.account.service.js";
-import { sendSuccess } from "../utils/response.utils.js";
-import type { ClientAuthenticatedRequest } from "../middleware/user.auth.middleware.js";
+import { AccountService } from "../../services/user/user.account.service.js";
+import { sendSuccess } from "../../utils/response.utils.js";
+import type { ClientAuthenticatedRequest } from "../../middleware/user.auth.middleware.js";
 
 export class AccountController {
     private accountService: AccountService;
