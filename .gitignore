@@ -1,0 +1,21 @@
+node_modules/
+.env
+dist/
+/generated/prisma
+# Environment
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+
+# Build
+dist/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

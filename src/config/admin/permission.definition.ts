@@ -1,0 +1,42 @@
+export const ADMIN_PERMISSIONS = [
+    {
+        name: "view_dashboard",
+        description: "View the admin dashboard",
+    },
+    {
+        name: "view_users",
+        description: "View user accounts",
+    },
+    {
+        name: "view_user_activity",
+        description: "View user activity",
+    },
+    {
+        name: "update_user_profile",
+        description: "Update user profiles",
+    },
+    {
+        name: "restrict_accounts",
+        description: "Restrict user accounts",
+    },
+    {
+        name: "create_admin",
+        description: "Create admin accounts",
+    },
+    {
+        name: "update_admin",
+        description: "Update admin accounts",
+    },
+    {
+        name: "deactivate_admin",
+        description: "Deactivate admin accounts",
+    },
+    {
+        name: "manage_roles",
+        description: "Create, update, and delete admin roles",
+    },
+    {
+        name: "manage_permissions",
+        description: "Manage permissions assigned to roles",
+    },
+] as const;

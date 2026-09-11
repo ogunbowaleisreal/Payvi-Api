@@ -1,0 +1,128 @@
+generator client {
+  provider            = "prisma-client"
+  output              = "../src/generated/prisma"
+  importFileExtension = "ts"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+model User {
+  id           Int    @id @default(autoincrement())
+  name         String @db.VarChar(100)
+  email        String @unique @db.VarChar(255)
+  passwordHash String @map("password_hash")
+
+  phone  String? @unique @db.VarChar(30)
+  gender Gender?
+  avatar String? @db.Text
+
+  isVerified Boolean @default(false) @map("is_verified")
+  isActive   Boolean @default(true) @map("is_active")
+
+  lastLoginAt DateTime? @map("last_login_at")
+
+  createdAt        DateTime  @default(now()) @map("created_at")
+  twoFactorEnabled Boolean   @default(false) @map("two_factor_enabled")
+  updatedAt        DateTime  @updatedAt @map("updated_at")
+  sessions         Session[]
+
+  @@map("users")
+}
+
+model Session {
+  id               String    @id @default(uuid())
+  userId           Int       @map("user_id")
+  refreshTokenHash String    @map("refresh_token_hash")
+  expiresAt        DateTime  @map("expires_at")
+  revokedAt        DateTime? @map("revoked_at")
+  createdAt        DateTime  @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("sessions")
+}
+
+model Admin {
+  id           Int    @id @default(autoincrement())
+  name         String @db.VarChar(100)
+  email        String @unique @db.VarChar(255)
+  passwordHash String @map("password_hash")
+
+  roleId Int?       @map("role_id")
+  role   AdminRole? @relation(fields: [roleId], references: [id])
+
+  sessions     AdminSession[]
+
+  isSuperAdmin Boolean   @default(false) @map("is_super_admin")
+  isActive     Boolean   @default(true) @map("is_active")
+  lastLoginAt  DateTime? @map("last_login_at")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([roleId])
+  @@map("admins")
+}
+
+model AdminRole {
+  id          Int     @id @default(autoincrement())
+  name        String  @unique @db.VarChar(100)
+  description String? @db.VarChar(255)
+
+  admins      Admin[]
+  permissions AdminRolePermission[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("admin_roles")
+}
+
+model AdminPermission {
+  id          Int     @id @default(autoincrement())
+  name        String  @unique @db.VarChar(100)
+  description String? @db.VarChar(255)
+
+  roles AdminRolePermission[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("admin_permissions")
+}
+
+model AdminRolePermission {
+  roleId       Int @map("role_id")
+  permissionId Int @map("permission_id")
+
+  role       AdminRole       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission AdminPermission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+  @@index([permissionId])
+  @@map("admin_role_permissions")
+}
+
+
+model AdminSession {
+  id               String    @id @default(uuid())
+  adminId          Int       @map("admin_id")
+  refreshTokenHash String    @map("refresh_token_hash")
+  expiresAt        DateTime  @map("expires_at")
+  revokedAt        DateTime? @map("revoked_at")
+  createdAt        DateTime  @default(now()) @map("created_at")
+
+  admin Admin @relation(fields: [adminId], references: [id], onDelete: Cascade)
+
+  @@index([adminId])
+  @@map("admin_sessions")
+}
