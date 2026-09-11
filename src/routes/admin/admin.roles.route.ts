@@ -1,38 +1,44 @@
 import { Router } from "express";
 
-import { AdminRoleController } from "../../controller/admin/admin.role.controller.js";
+import {
+    AdminRoleController,
+} from "../../controller/admin/admin.role.controller.js";
 
 import {
     authenticateAdmin,
-} from "../../middleware/admin.auth.middleware.js";
-
-import {
     authorizeAdmin,
 } from "../../middleware/admin.auth.middleware.js";
 
 const router = Router();
 
-const adminRoleController = new AdminRoleController();
+const adminRoleController =
+    new AdminRoleController();
 
 router.post(
-    "/roles",
+    "/",
     authenticateAdmin,
     authorizeAdmin(["manage_roles"]),
-    adminRoleController.createRole.bind(adminRoleController)
+    adminRoleController.createRole.bind(
+        adminRoleController
+    )
 );
 
 router.get(
-    "/roles",
+    "/",
     authenticateAdmin,
     authorizeAdmin(["manage_roles"]),
-    adminRoleController.getAllRoles.bind(adminRoleController)
+    adminRoleController.getAllRoles.bind(
+        adminRoleController
+    )
 );
 
 router.get(
-    "/roles/:id",
+    "/:id",
     authenticateAdmin,
     authorizeAdmin(["manage_roles"]),
-    adminRoleController.getRoleById.bind(adminRoleController)
+    adminRoleController.getRoleById.bind(
+        adminRoleController
+    )
 );
 
 router.get(
@@ -45,7 +51,7 @@ router.get(
 );
 
 router.patch(
-    "/roles/:id",
+    "/:id",
     authenticateAdmin,
     authorizeAdmin(["manage_roles"]),
     adminRoleController.updateRole.bind(
@@ -54,7 +60,7 @@ router.patch(
 );
 
 router.put(
-    "/roles/:id/permissions",
+    "/:id/permissions",
     authenticateAdmin,
     authorizeAdmin(["manage_permissions"]),
     adminRoleController.updateRolePermissions.bind(
@@ -63,7 +69,7 @@ router.put(
 );
 
 router.delete(
-    "/roles/:id",
+    "/:id",
     authenticateAdmin,
     authorizeAdmin(["manage_roles"]),
     adminRoleController.deleteRole.bind(

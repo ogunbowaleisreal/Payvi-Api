@@ -18,27 +18,37 @@ import type {
 
 const router = Router();
 
-const adminAuthController = new AdminAuthController();
+const adminAuthController =
+    new AdminAuthController();
 
 router.post(
-    "/auth/login",
-    adminAuthController.login.bind(adminAuthController)
+    "/login",
+    adminAuthController.login.bind(
+        adminAuthController
+    )
 );
 
 router.post(
-    "/auth/refresh",
-    adminAuthController.refresh.bind(adminAuthController)
+    "/refresh",
+    adminAuthController.refresh.bind(
+        adminAuthController
+    )
 );
 
 router.post(
-    "/auth/logout",
-    adminAuthController.logout.bind(adminAuthController)
+    "/logout",
+    adminAuthController.logout.bind(
+        adminAuthController
+    )
 );
 
 router.get(
-    "/auth/me",
+    "/me",
     authenticateAdmin,
-    (req: AdminAuthenticatedRequest, res) => {
+    (
+        req: AdminAuthenticatedRequest,
+        res
+    ) => {
         return sendSuccess(
             res,
             {
@@ -50,3 +60,4 @@ router.get(
 );
 
 export default router;
+
