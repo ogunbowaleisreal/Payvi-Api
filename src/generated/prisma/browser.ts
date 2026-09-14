@@ -52,3 +52,8 @@ export type AdminRolePermission = Prisma.AdminRolePermissionModel
  * 
  */
 export type AdminSession = Prisma.AdminSessionModel
+/**
+ * Model Log
+ * 
+ */
+export type Log = Prisma.LogModel

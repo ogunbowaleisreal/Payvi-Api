@@ -2,7 +2,7 @@ import { randomInt } from "node:crypto";
 import { RedisService } from "./redis.service.js";
 import { AppError } from "../../utils/app-error.js";
 import { OtpType } from "../../interfaces/otp.interface.js";
-
+import { logger } from "../../logger/logger.js";
 export class OtpService {
     private redisService: RedisService;
 
@@ -56,6 +56,7 @@ export class OtpService {
             await this.redisService.get(key);
 
         if (!storedOtp) {
+            logger.error("OTP does not exist", { key });
             throw new AppError(
                 "OTP has expired or does not exist",
                 400

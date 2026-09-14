@@ -132,3 +132,30 @@ model AdminSession {
   @@index([adminId])
   @@map("admin_sessions")
 }
+
+model Log {
+  id         String   @id @default(uuid()) @db.Uuid
+
+  level      String
+  message    String   @db.Text
+
+  requestId  String?  @map("request_id")
+  userId     String?  @map("user_id")
+
+  method     String?
+  path       String?
+
+  statusCode Int?     @map("status_code")
+  duration   Int?
+
+  metadata   Json?
+
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@index([level])
+  @@index([createdAt])
+  @@index([requestId])
+  @@index([userId])
+
+  @@map("logs")
+}

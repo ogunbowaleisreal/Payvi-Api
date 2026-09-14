@@ -7,7 +7,7 @@ import adminAccountRoutes from "../admin/admin.account.route.js";
 const router = Router();
 
 router.use("/auth", authRoutes);
-router.use("account", adminAccountRoutes);
-router.use("roles", rolesRoute);
+router.use("/account", adminAccountRoutes);
+router.use("/roles", rolesRoute);
 
 export default router;

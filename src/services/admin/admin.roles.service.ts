@@ -5,6 +5,7 @@ import { AdminRolePermissionRepository } from "../../repository/admin.role.permi
 import type { CreateAdminRoleInput, UpdateRolePermissionsInput, UpdateAdminRoleInput } from "../../interfaces/admin/admin.roles.interface.js";
 import { AppError } from "../../utils/app-error.js";
 import { AdminRepository } from "../../repository/admin.repository.js";
+import { logger } from "../../logger/logger.js";
 
 export class AdminRoleService {
     private adminRoleRepository: AdminRoleRepository;
@@ -35,6 +36,7 @@ export class AdminRoleService {
             await this.adminRoleRepository.findRoleByName(name);
 
         if (existingRole) {
+            logger.error("Role already exists", { name });
             throw new AppError(
                 "Role already exists",
                 409
@@ -50,6 +52,7 @@ export class AdminRoleService {
             permissionRecords.length !==
             permissions.length
         ) {
+            logger.error("One or more permissions do not exist", { permissions });
             throw new AppError(
                 "One or more permissions do not exist",
                 400
@@ -95,6 +98,7 @@ export class AdminRoleService {
                 .findRoleByIdWithPermissions(id);
 
         if (!role) {
+            logger.error("Admin role not found", { id });
             throw new AppError(
                 "Admin role not found",
                 404
@@ -121,6 +125,7 @@ export class AdminRoleService {
             await this.adminRoleRepository.findRoleById(id);
 
         if (!existingRole) {
+            logger.error("Admin role not found", { id });
             throw new AppError(
                 "Admin role not found",
                 404
@@ -136,6 +141,7 @@ export class AdminRoleService {
             roleWithSameName &&
             roleWithSameName.id !== id
         ) {
+            logger.error("Role name already exists", { name: input.name });
             throw new AppError(
                 "Role name already exists",
                 409
@@ -159,6 +165,7 @@ export class AdminRoleService {
             );
 
         if (!role) {
+            logger.error("Admin role not found", { id: roleId });
             throw new AppError(
                 "Admin role not found",
                 404
@@ -175,6 +182,7 @@ export class AdminRoleService {
             permissionRecords.length !==
             input.permissions.length
         ) {
+            logger.error("One or more permissions do not exist", { permissions: input.permissions });
             throw new AppError(
                 "One or more permissions do not exist",
                 400
@@ -204,6 +212,7 @@ export class AdminRoleService {
             await this.adminRoleRepository.findRoleById(id);
 
         if (!role) {
+            logger.error("Admin role not found", { id });
             throw new AppError(
                 "Admin role not found",
                 404
@@ -216,6 +225,7 @@ export class AdminRoleService {
             );
 
         if (adminCount > 0) {
+            logger.error("Cannot delete a role assigned to administrators");
             throw new AppError(
                 "Cannot delete a role assigned to administrators",
                 409

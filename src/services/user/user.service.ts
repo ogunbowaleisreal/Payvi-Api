@@ -21,6 +21,7 @@ import { twoFactorOtpTemplate } from "../../templates/email/two-factor-otp.templ
 import { toUserResponse } from "../../utils/user.utils.js";
 import { generateRandomToken } from "../../utils/user.utils.js";
 import { RedisService } from "../shared/redis.service.js";
+import { logger } from "../../logger/logger.js";
 
 
 export class UserService {
@@ -41,18 +42,22 @@ export class UserService {
 
     async registerUser(userData: CreateUserInput) {
         if (!userData.name) {
+            logger.error("Name is required");
             throw new AppError("Name is required", 400);
         }
 
         if (!userData.email) {
+            logger.error("Email is required");
             throw new AppError("Email is required", 400);
         }
 
         if (!userData.password) {
+            logger.error("Password is required");
             throw new AppError("Password is required", 400);
         }
 
         if (userData.password.length < 8) {
+            logger.error("Password must be at least 8 characters");
             throw new AppError(
                 "Password must be at least 8 characters",
                 400
@@ -124,6 +129,7 @@ export class UserService {
         }
 
         if (user.isVerified) {
+            logger.error("Email is already verified", { email });
             throw new AppError(
                 "Email is already verified",
                 400
@@ -175,6 +181,7 @@ export class UserService {
             await this.userRepository.findUserByEmail(email);
 
         if (!user) {
+            logger.error("User not found", { email });
             throw new AppError(
                 "Invalid password reset request",
                 400
@@ -212,6 +219,7 @@ export class UserService {
             await this.redisService.get(key);
 
         if (!userId) {
+            logger.error("Invalid or expired password reset token");
             throw new AppError(
                 "Invalid or expired password reset token",
                 400
@@ -237,6 +245,7 @@ export class UserService {
         const user = await this.userRepository.findUserByEmail(input.email);
 
         if (!user) {
+            logger.error("User not found", { email: input.email });
             throw new AppError("Invalid email or password", 401);
         }
 
@@ -246,6 +255,7 @@ export class UserService {
         );
 
         if (!passwordValid) {
+            logger.error("Invalid password", { email: input.email });
             throw new AppError("Invalid email or password", 401);
         }
 
@@ -323,6 +333,7 @@ export class UserService {
         }
 
         if (!user.twoFactorEnabled) {
+            logger.info("Two-factor authentication is not enabled", { userId: user.id.toString() });
             throw new AppError(
                 "Two-factor authentication is not enabled",
                 400
@@ -403,6 +414,7 @@ export class UserService {
         }
 
         if (session.expiresAt <= new Date()) {
+            logger.info("Session has expired", { sessionId: session.id });
             throw new AppError("Session has expired", 401);
         }
 
@@ -410,6 +422,7 @@ export class UserService {
         const refreshTokenHash = hashToken(refreshToken);
 
         if (refreshTokenHash !== session.refreshTokenHash) {
+            logger.info("Invalid refresh token", { sessionId: session.id });
             throw new AppError("Invalid refresh token", 401);
         }
 
@@ -451,6 +464,7 @@ export class UserService {
 
     async logout(refreshToken: string) {
         if (!refreshToken) {
+            logger.info("Refresh token is required");
             throw new AppError("Refresh token is required", 401);
         }
 
@@ -459,6 +473,7 @@ export class UserService {
         try {
             payload = verifyRefreshToken(refreshToken);
         } catch {
+            logger.error("Invalid or expired refresh token", { refreshToken });
             throw new AppError(
                 "Invalid or expired refresh token",
                 401

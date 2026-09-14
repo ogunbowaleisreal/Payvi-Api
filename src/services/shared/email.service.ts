@@ -1,4 +1,4 @@
-import { Resend } from "resend";
+import { BrevoClient } from '@getbrevo/brevo';
 
 export interface EmailPayload {
     to: string;
@@ -7,11 +7,14 @@ export interface EmailPayload {
 }
 
 export class EmailService {
-    private resend: Resend;
+    private brevo: BrevoClient;
     private from: string;
 
     constructor() {
-        this.resend = new Resend(process.env.RESEND_API_KEY);
+        this.brevo = new BrevoClient({
+            apiKey: process.env.BREVO_API_KEY!,
+        });
+
         this.from = process.env.EMAIL_FROM!;
     }
 
@@ -20,12 +23,32 @@ export class EmailService {
         subject,
         html,
     }: EmailPayload): Promise<void> {
-        await this.resend.emails.send({
-            from: this.from,
-            to,
+        await this.brevo.transactionalEmails.sendTransacEmail({
+            sender: {
+                name: 'Easy-Tech',
+                email: this.from,
+            },
+            to: [
+                {
+                    email: to,
+                },
+            ],
             subject,
-            html,
+            htmlContent: html,
         });
+        // await this.brevo.transactionalEmails.sendTransacEmail({
+        //     sender: {
+        //         email: this.from,
+        //     },
+        //     to: [
+        //         {
+        //             email: to,
+        //         },
+        //     ],
+        //     subject,
+        //     htmlContent: html,
+        // });
     }
-
 }
+
+export default new EmailService();

@@ -12,6 +12,7 @@ import {
 } from "../../utils/hash.utils.js";
 import { generateRandomToken } from "../../utils/user.utils.js";
 import { verifyAdminRefreshToken } from "../../utils/jwt.utils.js";
+import { logger } from "../../logger/logger.js";
 
 export class AdminAuthService {
     private adminRepository: AdminRepository;
@@ -31,6 +32,7 @@ export class AdminAuthService {
             );
 
         if (!admin) {
+            logger.error("Invalid email or password", { email });
             throw new AppError(
                 "Invalid email or password",
                 401
@@ -38,6 +40,7 @@ export class AdminAuthService {
         }
 
         if (!admin.isActive) {
+            logger.error("Admin account is inactive", { email });
             throw new AppError(
                 "Admin account is inactive",
                 403
@@ -51,6 +54,7 @@ export class AdminAuthService {
             );
 
         if (!passwordValid) {
+            logger.error("Invalid email or password", { email });
             throw new AppError(
                 "Invalid email or password",
                 401
@@ -107,6 +111,7 @@ export class AdminAuthService {
             payload =
                 verifyAdminRefreshToken(refreshToken);
         } catch {
+            logger.error("Invalid or expired refresh token", { refreshToken });
             throw new AppError(
                 "Invalid or expired refresh token",
                 401
@@ -126,6 +131,7 @@ export class AdminAuthService {
                 );
 
         if (!session) {
+            logger.error("Invalid refresh session", { sessionId, adminId });
             throw new AppError(
                 "Invalid refresh session",
                 401
@@ -133,6 +139,7 @@ export class AdminAuthService {
         }
 
         if (session.expiresAt <= new Date()) {
+            logger.error("Refresh session has expired", { sessionId, adminId });
             throw new AppError(
                 "Refresh session has expired",
                 401
@@ -146,6 +153,7 @@ export class AdminAuthService {
             refreshTokenHash !==
             session.refreshTokenHash
         ) {
+            logger.error("Invalid refresh token", { refreshToken });
             throw new AppError(
                 "Invalid refresh token",
                 401
@@ -158,6 +166,7 @@ export class AdminAuthService {
             );
 
         if (!admin) {
+            logger.error("Admin account not found", { adminId });
             throw new AppError(
                 "Admin account not found",
                 401
@@ -165,6 +174,7 @@ export class AdminAuthService {
         }
 
         if (!admin.isActive) {
+            logger.error("Admin account is inactive", { adminId });
             throw new AppError(
                 "Admin account is inactive",
                 403
@@ -186,6 +196,7 @@ export class AdminAuthService {
             payload =
                 verifyAdminRefreshToken(refreshToken);
         } catch {
+            logger.error("Invalid or expired refresh token", { refreshToken });
             throw new AppError(
                 "Invalid or expired refresh token",
                 401

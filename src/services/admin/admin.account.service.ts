@@ -2,6 +2,7 @@ import { AdminRepository } from "../../repository/admin.repository.js";
 import { AdminRoleRepository } from "../../repository/admin.role.repository.js";
 import { hashPassword } from "../../utils/password.utils.js";
 import { AppError } from "../../utils/app-error.js";
+import { logger } from "../../logger/logger.js";
 
 import type {
     CreateAdminInput,
@@ -33,6 +34,9 @@ export class AdminService {
             );
 
         if (existingAdmin) {
+            logger.error("Admin with this email already exists", {
+                email,
+            });
             throw new AppError(
                 "Admin with this email already exists",
                 409
@@ -45,6 +49,11 @@ export class AdminService {
             );
 
         if (!role) {
+            logger.error("Admin role not found",
+                {
+                    roleId,
+                }
+            )
             throw new AppError(
                 "Admin role not found",
                 404
@@ -82,6 +91,7 @@ export class AdminService {
                 .findAdminByIdWithRole(id);
 
         if (!admin) {
+            logger.error("Admin account not found", { id });
             throw new AppError(
                 "Admin account not found",
                 404
