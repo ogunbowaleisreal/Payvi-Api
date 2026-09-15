@@ -16,7 +16,8 @@ enum Gender {
 
 model User {
   id           Int    @id @default(autoincrement())
-  name         String @db.VarChar(100)
+  firstName    String @map("first_name") @db.VarChar(100)
+  lastName     String @map("last_name") @db.VarChar(100)
   email        String @unique @db.VarChar(255)
   passwordHash String @map("password_hash")
 
@@ -53,27 +54,28 @@ model Session {
 
 model Admin {
   id           Int       @id @default(autoincrement())
-  name         String    @db.VarChar(100)
+  firstName    String    @map("first_name") @db.VarChar(100)
+  lastName     String    @map("last_name") @db.VarChar(100)
   email        String    @unique @db.VarChar(255)
   passwordHash String    @map("password_hash")
 
-  phone        String?   @unique @db.VarChar(30)
-  gender       Gender?
-  avatar       String?   @db.Text
-  jobTitle     String?   @db.VarChar(100)
-  department   String?   @db.VarChar(100)
+  phone      String? @unique @db.VarChar(30)
+  gender     Gender?
+  avatar     String? @db.Text
+  jobTitle   String? @db.VarChar(100)
+  department String? @db.VarChar(100)
 
-  roleId       Int?      @map("role_id")
-  role         AdminRole? @relation(fields: [roleId], references: [id])
+  roleId Int?       @map("role_id")
+  role   AdminRole? @relation(fields: [roleId], references: [id])
 
   isSuperAdmin Boolean   @default(false) @map("is_super_admin")
   isActive     Boolean   @default(true) @map("is_active")
   lastLoginAt  DateTime? @map("last_login_at")
 
-  sessions     AdminSession[]
+  sessions AdminSession[]
 
-  createdAt    DateTime  @default(now()) @map("created_at")
-  updatedAt    DateTime  @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   @@index([roleId])
   @@map("admins")

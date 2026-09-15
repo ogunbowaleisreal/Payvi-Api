@@ -2,6 +2,8 @@ import jwt from "jsonwebtoken";
 
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET!;
 const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET!;
+const ADMIN_ACCESS_TOKEN_SECRET = process.env.ADMIN_ACCESS_TOKEN_SECRET!;
+const ADMIN_REFRESH_TOKEN_SECRET = process.env.ADMIN_REFRESH_TOKEN_SECRET!;
 
 export interface AccessTokenPayload {
     userId: number;
@@ -26,7 +28,7 @@ export const generateAdminAccessToken = (
 ): string => {
     return jwt.sign(
         { adminId },
-        ACCESS_TOKEN_SECRET,
+        ADMIN_ACCESS_TOKEN_SECRET,
         {
             expiresIn: "15m",
         }
@@ -42,7 +44,7 @@ export const generateAdminRefreshToken = (
             adminId,
             sessionId,
         },
-        REFRESH_TOKEN_SECRET,
+        ADMIN_REFRESH_TOKEN_SECRET,
         {
             expiresIn: "7d",
         }
@@ -54,7 +56,7 @@ export const verifyAdminRefreshToken = (
 ): AdminRefreshTokenPayload => {
     return jwt.verify(
         token,
-        REFRESH_TOKEN_SECRET
+        ADMIN_REFRESH_TOKEN_SECRET
     ) as AdminRefreshTokenPayload;
 };
 
@@ -63,7 +65,7 @@ export const verifyAdminAccessToken = (
 ): AdminAccessTokenPayload => {
     return jwt.verify(
         token,
-        ACCESS_TOKEN_SECRET
+        ADMIN_ACCESS_TOKEN_SECRET
     ) as AdminAccessTokenPayload;
 };
 

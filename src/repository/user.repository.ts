@@ -6,7 +6,8 @@ export class UserRepository {
     async createUser(payload: CreateUserData) {
         return prisma.user.create({
             data: {
-                name: payload.name,
+                firstName: payload.firstName,
+                lastName: payload.lastName,
                 email: payload.email,
                 passwordHash: payload.passwordHash,
             },

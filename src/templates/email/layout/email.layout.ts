@@ -1,15 +1,17 @@
 import { emailConfig } from "../../../config/email.js";
 
 interface EmailLayoutOptions {
-    title: string;
-    content: string;
+  title: string;
+  content: string;
 }
 
+console.log("Primary color:", emailConfig.primaryColor);
+
 export const emailLayout = ({
-    title,
-    content,
+  title,
+  content,
 }: EmailLayoutOptions): string => {
-    return `
+  return `
     <!DOCTYPE html>
     <html lang="en">
       <head>
@@ -56,7 +58,7 @@ export const emailLayout = ({
               "
             >
               ${emailConfig.logoUrl
-            ? `
+      ? `
                     <img
                       src="${emailConfig.logoUrl}"
                       alt="${emailConfig.companyName}"
@@ -66,7 +68,7 @@ export const emailLayout = ({
                       "
                     />
                   `
-            : `
+      : `
                     <h2
                       style="
                         margin: 0;
@@ -76,7 +78,7 @@ export const emailLayout = ({
                       ${emailConfig.companyName}
                     </h2>
                   `
-        }
+    }
             </div>
 
             <!-- Content -->
@@ -99,7 +101,7 @@ export const emailLayout = ({
               "
             >
               ${emailConfig.websiteUrl
-            ? `
+      ? `
                     <p style="margin: 0 0 8px;">
                       <a
                         href="${emailConfig.websiteUrl}"
@@ -112,11 +114,11 @@ export const emailLayout = ({
                       </a>
                     </p>
                   `
-            : ""
-        }
+      : ""
+    }
 
               ${emailConfig.supportEmail
-            ? `
+      ? `
                     <p style="margin: 0;">
                       Need help?
                       <a
@@ -130,8 +132,8 @@ export const emailLayout = ({
                       </a>
                     </p>
                   `
-            : ""
-        }
+      : ""
+    }
             </div>
 
           </div>

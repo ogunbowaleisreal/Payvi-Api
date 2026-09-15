@@ -22,6 +22,7 @@ import { toUserResponse } from "../../utils/user.utils.js";
 import { generateRandomToken } from "../../utils/user.utils.js";
 import { RedisService } from "../shared/redis.service.js";
 import { logger } from "../../logger/logger.js";
+import { normalizeEmail } from "../../validators/general.validators.js";
 
 
 export class UserService {
@@ -41,11 +42,14 @@ export class UserService {
     }
 
     async registerUser(userData: CreateUserInput) {
-        if (!userData.name) {
+        if (!userData.firstName) {
             logger.error("Name is required");
-            throw new AppError("Name is required", 400);
+            throw new AppError("firstName is required", 400);
         }
-
+        if (!userData.lastName) {
+            logger.error("Name is required");
+            throw new AppError("lastName is required", 400);
+        }
         if (!userData.email) {
             logger.error("Email is required");
             throw new AppError("Email is required", 400);
@@ -63,12 +67,14 @@ export class UserService {
                 400
             );
         }
+        const normalizedEmail = normalizeEmail(userData.email);
 
         const hashedPassword = await hashPassword(userData.password);
 
         const actualData = {
-            name: userData.name,
-            email: userData.email,
+            firstName: userData.firstName,
+            lastName: userData.lastName,
+            email: normalizedEmail,
             passwordHash: hashedPassword,
         };
 
@@ -473,7 +479,7 @@ export class UserService {
         try {
             payload = verifyRefreshToken(refreshToken);
         } catch {
-            logger.error("Invalid or expired refresh token", { refreshToken });
+            logger.error("Invalid or expired refresh token");
             throw new AppError(
                 "Invalid or expired refresh token",
                 401

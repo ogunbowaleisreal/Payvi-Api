@@ -6,21 +6,17 @@ import {
 
 import {
     authenticateAdmin,
-} from "../../middleware/admin.auth.middleware.js";
-
-import {
     authorizeAdmin,
 } from "../../middleware/admin.auth.middleware.js";
 
 const router = Router();
 
-const adminController =
-    new AdminController();
+const adminController = new AdminController();
 
 router.post(
     "/admins",
     authenticateAdmin,
-    authorizeAdmin(["create_admin"]),
+    authorizeAdmin(["CRTADMIN"]),
     adminController.createAdmin.bind(
         adminController
     )
@@ -29,7 +25,7 @@ router.post(
 router.get(
     "/admins",
     authenticateAdmin,
-    authorizeAdmin(["view_admin"]),
+    authorizeAdmin(["VIEWADMIN"]),
     adminController.getAllAdmins.bind(
         adminController
     )
@@ -38,7 +34,7 @@ router.get(
 router.get(
     "/admins/:id",
     authenticateAdmin,
-    authorizeAdmin(["view_admin"]),
+    authorizeAdmin(["VIEWADMIN"]),
     adminController.getAdminById.bind(
         adminController
     )
@@ -47,7 +43,7 @@ router.get(
 router.patch(
     "/admins/:id",
     authenticateAdmin,
-    authorizeAdmin(["update_admin"]),
+    authorizeAdmin(["UPDTADMIN"]),
     adminController.updateAdmin.bind(
         adminController
     )
@@ -56,7 +52,7 @@ router.patch(
 router.patch(
     "/admins/:id/role",
     authenticateAdmin,
-    authorizeAdmin(["update_admin"]),
+    authorizeAdmin(["UPDTADMIN"]),
     adminController.assignRole.bind(
         adminController
     )
@@ -65,7 +61,7 @@ router.patch(
 router.patch(
     "/admins/:id/deactivate",
     authenticateAdmin,
-    authorizeAdmin(["deactivate_admin"]),
+    authorizeAdmin(["DEACTADMIN"]),
     adminController.deactivateAdmin.bind(
         adminController
     )

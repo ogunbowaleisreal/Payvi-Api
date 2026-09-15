@@ -13,6 +13,31 @@ export class RedisService {
         await redisClient.del(key);
     }
 
+
+    async increment(key: string): Promise<number> {
+        return redisClient.incr(key);
+    }
+
+    async incrementWithExpiry(
+        key: string,
+        expiryInSeconds: number
+    ): Promise<number> {
+        const result = await redisClient
+            .multi()
+            .incr(key)
+            .expire(key, expiryInSeconds, "NX")
+            .exec();
+
+        const count = result[0];
+
+        if (typeof count !== "number") {
+            throw new Error("Unexpected Redis INCR response");
+        }
+
+        return count;
+    }
+
+
     async setWithExpiry(
         key: string,
         value: string,

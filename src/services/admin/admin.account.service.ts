@@ -1,8 +1,11 @@
 import { AdminRepository } from "../../repository/admin.repository.js";
 import { AdminRoleRepository } from "../../repository/admin.role.repository.js";
+import { EmailService } from "../shared/email.service.js";
 import { hashPassword } from "../../utils/password.utils.js";
 import { AppError } from "../../utils/app-error.js";
 import { logger } from "../../logger/logger.js";
+import { normalizeEmail } from "../../validators/general.validators.js";
+import { adminWelcomeTemplate } from "../../templates/email/admin.welcome.template.js";
 
 import type {
     CreateAdminInput,
@@ -13,24 +16,29 @@ import type {
 export class AdminService {
     private adminRepository: AdminRepository;
     private adminRoleRepository: AdminRoleRepository;
+    private emailService: EmailService;
 
     constructor() {
         this.adminRepository = new AdminRepository();
         this.adminRoleRepository =
             new AdminRoleRepository();
+        this.emailService = new EmailService();
     }
 
     async createAdmin(input: CreateAdminInput) {
         const {
-            name,
+            firstName,
+            lastName,
             email,
             password,
             roleId,
         } = input;
 
+        const normalizedEmail = normalizeEmail(email);
+
         const existingAdmin =
             await this.adminRepository.findAdminByEmail(
-                email
+                normalizedEmail
             );
 
         if (existingAdmin) {
@@ -65,15 +73,37 @@ export class AdminService {
 
         const admin =
             await this.adminRepository.createAdmin(
-                name,
-                email,
+                firstName,
+                lastName,
+                normalizedEmail,
                 passwordHash,
                 roleId
             );
 
+        try {
+            const emailTemplate = adminWelcomeTemplate(
+                admin.firstName,
+                admin.email,
+                password,
+                role.name
+            );
+
+            await this.emailService.sendEmail({
+                to: admin.email,
+                subject: emailTemplate.subject,
+                html: emailTemplate.html,
+            });
+        } catch (error) {
+            logger.error("Failed to send admin welcome email", {
+                error,
+                adminId: admin.id,
+                email: admin.email,
+            });
+        }
         return {
             id: admin.id,
-            name: admin.name,
+            firstName: admin.firstName,
+            lastName: admin.lastName,
             email: admin.email,
             roleId: admin.roleId,
             isActive: admin.isActive,
@@ -116,9 +146,10 @@ export class AdminService {
         }
 
         if (input.email) {
+            const normalizedEmail = normalizeEmail(input.email);
             const existingAdmin =
                 await this.adminRepository
-                    .findAdminByEmail(input.email);
+                    .findAdminByEmail(normalizedEmail);
 
             if (
                 existingAdmin &&

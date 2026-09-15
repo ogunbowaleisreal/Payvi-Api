@@ -25,7 +25,7 @@ export class EmailService {
     }: EmailPayload): Promise<void> {
         await this.brevo.transactionalEmails.sendTransacEmail({
             sender: {
-                name: 'Easy-Tech',
+                name: 'PayVi',
                 email: this.from,
             },
             to: [

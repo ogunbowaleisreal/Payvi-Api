@@ -1,12 +1,14 @@
 import type { Gender } from "../../generated/prisma/client.js";
 export interface CreateUserData {
-    name: string;
+    firstName: string;
+    lastName: string;
     email: string;
     passwordHash: string
 }
 
 export interface CreateUserInput {
-    name: string;
+    firstName: string;
+    lastName: string
     email: string;
     password: string;
 }

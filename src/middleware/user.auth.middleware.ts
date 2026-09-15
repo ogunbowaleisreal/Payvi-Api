@@ -14,7 +14,7 @@ export interface ClientAuthenticatedRequest
 
 export const ClientAuthMiddleware = (
     req: ClientAuthenticatedRequest,
-    res: Response,
+    _res: Response,
     next: NextFunction
 ) => {
     const authorization =

@@ -5,9 +5,9 @@ import { sendError } from "../utils/response.utils.js";
 
 export const errorMiddleware = (
     err: unknown,
-    req: Request,
+    _req: Request,
     res: Response,
-    next: NextFunction
+    _next: NextFunction
 ) => {
     console.error(err);
 

@@ -95,7 +95,8 @@ export class AdminAuthService {
             refreshToken,
             admin: {
                 id: admin.id,
-                name: admin.name,
+                firstName: admin.firstName,
+                lastName: admin.lastName,
                 email: admin.email,
                 isSuperAdmin: admin.isSuperAdmin,
                 role: admin.role ?
@@ -111,7 +112,7 @@ export class AdminAuthService {
             payload =
                 verifyAdminRefreshToken(refreshToken);
         } catch {
-            logger.error("Invalid or expired refresh token", { refreshToken });
+            logger.error("Invalid or expired refresh token",);
             throw new AppError(
                 "Invalid or expired refresh token",
                 401
@@ -153,7 +154,7 @@ export class AdminAuthService {
             refreshTokenHash !==
             session.refreshTokenHash
         ) {
-            logger.error("Invalid refresh token", { refreshToken });
+            logger.error("Invalid refresh token");
             throw new AppError(
                 "Invalid refresh token",
                 401
@@ -196,7 +197,7 @@ export class AdminAuthService {
             payload =
                 verifyAdminRefreshToken(refreshToken);
         } catch {
-            logger.error("Invalid or expired refresh token", { refreshToken });
+            logger.error("Invalid or expired refresh token");
             throw new AppError(
                 "Invalid or expired refresh token",
                 401

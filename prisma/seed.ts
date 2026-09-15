@@ -29,11 +29,12 @@ const seedPermissions = async () => {
 };
 
 const seedSuperAdmin = async () => {
-    const name = process.env.SUPER_ADMIN_NAME;
+    const firstName = process.env.SUPER_ADMIN_FIRST_NAME;
+    const lastName = process.env.SUPER_ADMIN_LAST_NAME;
     const email = process.env.SUPER_ADMIN_EMAIL;
     const password = process.env.SUPER_ADMIN_PASSWORD;
 
-    if (!name || !email || !password) {
+    if (!firstName || !lastName || !email || !password) {
         throw new Error(
             "SUPER_ADMIN_NAME, SUPER_ADMIN_EMAIL and SUPER_ADMIN_PASSWORD are required"
         );
@@ -56,7 +57,8 @@ const seedSuperAdmin = async () => {
 
     await prisma.admin.create({
         data: {
-            name,
+            firstName,
+            lastName,
             email,
             passwordHash,
             isSuperAdmin: true,

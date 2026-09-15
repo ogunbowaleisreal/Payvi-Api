@@ -1,10 +1,13 @@
 import { Router } from "express";
 
 import { UserController } from "../../controller/users/user.controller.js";
+import { rateLimit } from "../../middleware/rate.limiter.middeware.js";
+import { authRateLimit } from "../../config/rate.limit.js";
 
 const router = Router();
 
 const userController = new UserController();
+router.use(rateLimit(authRateLimit));
 
 router.post(
     "/register",

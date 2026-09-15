@@ -5,3 +5,5 @@ export const emailConfig = {
     websiteUrl: process.env.COMPANY_WEBSITE_URL,
     supportEmail: process.env.COMPANY_SUPPORT_EMAIL,
 };
+
+console.log("Primary color:", emailConfig.primaryColor);

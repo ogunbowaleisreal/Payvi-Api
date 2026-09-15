@@ -17,7 +17,7 @@ const adminRoleController =
 router.post(
     "/",
     authenticateAdmin,
-    authorizeAdmin(["manage_roles"]),
+    authorizeAdmin(["MANAGEROLES"]),
     adminRoleController.createRole.bind(
         adminRoleController
     )
@@ -26,7 +26,7 @@ router.post(
 router.get(
     "/",
     authenticateAdmin,
-    authorizeAdmin(["manage_roles"]),
+    authorizeAdmin(["MANAGEROLES"]),
     adminRoleController.getAllRoles.bind(
         adminRoleController
     )
@@ -35,7 +35,7 @@ router.get(
 router.get(
     "/:id",
     authenticateAdmin,
-    authorizeAdmin(["manage_roles"]),
+    authorizeAdmin(["MANAGEROLES"]),
     adminRoleController.getRoleById.bind(
         adminRoleController
     )
@@ -44,7 +44,7 @@ router.get(
 router.get(
     "/permissions",
     authenticateAdmin,
-    authorizeAdmin(["manage_permissions"]),
+    authorizeAdmin(["MANAGEPERMS"]),
     adminRoleController.getAllPermissions.bind(
         adminRoleController
     )
@@ -53,7 +53,7 @@ router.get(
 router.patch(
     "/:id",
     authenticateAdmin,
-    authorizeAdmin(["manage_roles"]),
+    authorizeAdmin(["MANAGEROLES"]),
     adminRoleController.updateRole.bind(
         adminRoleController
     )
@@ -62,7 +62,7 @@ router.patch(
 router.put(
     "/:id/permissions",
     authenticateAdmin,
-    authorizeAdmin(["manage_permissions"]),
+    authorizeAdmin(["MANAGEPERMS"]),
     adminRoleController.updateRolePermissions.bind(
         adminRoleController
     )
@@ -71,7 +71,7 @@ router.put(
 router.delete(
     "/:id",
     authenticateAdmin,
-    authorizeAdmin(["manage_roles"]),
+    authorizeAdmin(["MANAGEROLES"]),
     adminRoleController.deleteRole.bind(
         adminRoleController
     )

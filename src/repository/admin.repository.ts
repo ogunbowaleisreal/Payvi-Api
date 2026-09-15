@@ -7,14 +7,16 @@ export class AdminRepository {
     constructor(private db: AdminDb = prisma) { }
 
     async createAdmin(
-        name: string,
+        firstName: string,
+        lastName: string,
         email: string,
         passwordHash: string,
         roleId?: number
     ) {
         return this.db.admin.create({
             data: {
-                name,
+                firstName,
+                lastName,
                 email,
                 passwordHash,
                 roleId: roleId ?? null,
@@ -133,7 +135,8 @@ export class AdminRepository {
             where: { email, },
             select: {
                 id: true,
-                name: true,
+                firstName: true,
+                lastName: true,
                 email: true,
                 passwordHash: true,
                 isSuperAdmin: true,
