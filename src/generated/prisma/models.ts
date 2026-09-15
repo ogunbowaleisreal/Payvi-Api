@@ -8,12 +8,12 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/User.ts'
-export type * from './models/Session.ts'
-export type * from './models/Admin.ts'
-export type * from './models/AdminRole.ts'
-export type * from './models/AdminPermission.ts'
-export type * from './models/AdminRolePermission.ts'
-export type * from './models/AdminSession.ts'
-export type * from './models/Log.ts'
-export type * from './commonInputTypes.ts'
+export type * from './models/User.js'
+export type * from './models/Session.js'
+export type * from './models/Admin.js'
+export type * from './models/AdminRole.js'
+export type * from './models/AdminPermission.js'
+export type * from './models/AdminRolePermission.js'
+export type * from './models/AdminSession.js'
+export type * from './models/Log.js'
+export type * from './commonInputTypes.js'
