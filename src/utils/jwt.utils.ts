@@ -30,7 +30,7 @@ export const generateAdminAccessToken = (
         { adminId },
         ADMIN_ACCESS_TOKEN_SECRET,
         {
-            expiresIn: "15m",
+            expiresIn: "3d",
         }
     );
 };

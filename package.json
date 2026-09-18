@@ -1,5 +1,5 @@
 {
-  "name": "expensetracker-api",
+  "name": "Payvi-api",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
@@ -12,7 +12,7 @@
     "test:watch": "vitest"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ogunbowale Isreal (EasyTech)",
   "license": "ISC",
   "description": "",
   "dependencies": {
