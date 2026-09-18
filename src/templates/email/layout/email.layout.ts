@@ -5,7 +5,6 @@ interface EmailLayoutOptions {
   content: string;
 }
 
-console.log("Primary color:", emailConfig.primaryColor);
 
 export const emailLayout = ({
   title,

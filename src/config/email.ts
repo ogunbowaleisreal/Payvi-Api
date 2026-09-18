@@ -6,4 +6,3 @@ export const emailConfig = {
     supportEmail: process.env.COMPANY_SUPPORT_EMAIL,
 };
 
-console.log("Primary color:", emailConfig.primaryColor);

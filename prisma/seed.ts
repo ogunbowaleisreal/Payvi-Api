@@ -1,3 +1,6 @@
+import "dotenv/config";
+import { setDefaultResultOrder } from "node:dns";
+setDefaultResultOrder("ipv4first");
 import { PrismaClient } from "../src/generated/prisma/client.js";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { ADMIN_PERMISSIONS } from "../src/config/admin/permission.definition.js";
@@ -5,6 +8,7 @@ import { hashPassword } from "../src/utils/password.utils.js";
 
 const adapter = new PrismaPg({
     connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false },
 });
 
 const prisma = new PrismaClient({

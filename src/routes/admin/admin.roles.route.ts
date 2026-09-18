@@ -33,6 +33,16 @@ router.get(
 );
 
 router.get(
+    "/permissions",
+    authenticateAdmin,
+    authorizeAdmin(["MANAGEPERMS"]),
+    adminRoleController.getAllPermissions.bind(
+        adminRoleController
+    )
+);
+
+
+router.get(
     "/:id",
     authenticateAdmin,
     authorizeAdmin(["MANAGEROLES"]),
@@ -41,14 +51,7 @@ router.get(
     )
 );
 
-router.get(
-    "/permissions",
-    authenticateAdmin,
-    authorizeAdmin(["MANAGEPERMS"]),
-    adminRoleController.getAllPermissions.bind(
-        adminRoleController
-    )
-);
+
 
 router.patch(
     "/:id",
