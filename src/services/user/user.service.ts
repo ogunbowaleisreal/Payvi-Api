@@ -44,6 +44,29 @@ export class UserService {
     }
 
     async registerUser(userData: CreateUserInput) {
+        const existingUser = await this.userRepository.findUserByEmail(
+            userData.email
+        )
+        if (existingUser) {
+            logger.error("User already exists, Try verifying your email or login");
+            if (existingUser.isVerified) {
+                throw new AppError("User already exists and verified, Please Login", 400);
+            }
+            const otp = await this.otpService.generateOtp(
+                existingUser.email,
+                OtpType.EMAIL_VERIFICATION
+            );
+
+            const email = verificationOtpTemplate(otp);
+
+            await this.emailService.sendEmail({
+                to: existingUser.email,
+                ...email,
+            });
+            return {
+                message: "User already exists, Not Verified, Please check your email for verification code",
+            };
+        }
         if (!userData.firstName) {
             logger.error("Name is required");
             throw new AppError("firstName is required", 400);
@@ -263,6 +286,10 @@ export class UserService {
         if (!user) {
             logger.error("User not found", { email: input.email });
             throw new AppError("Invalid email or password", 401);
+        }
+        if (user.isVerified === false) {
+            logger.error("User not verified", { email: input.email });
+            throw new AppError("User not verified", 401);
         }
 
         const passwordValid = await comparePassword(

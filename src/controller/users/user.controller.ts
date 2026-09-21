@@ -20,7 +20,7 @@ export class UserController {
         return sendCreated(
             res,
             user,
-            "User registered successfully"
+            "User registered successfully, Please Check your email for verification code"
         );
     }
 

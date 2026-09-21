@@ -3,10 +3,13 @@ import "dotenv/config";
 
 import app from "./app.js";
 import redisClient, { connectRedis } from "./config/redis.js";
+import { prisma } from "./config/prisma.js";
 import { env } from "./config/env.js";
 
 const startServer = async () => {
     try {
+        await prisma.$queryRaw`SELECT NOW()`;
+        console.log("Prisma connected to PostgreSQL");
         await connectRedis();
 
         const server = app.listen(env.PORT, () => {
