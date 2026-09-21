@@ -1,4 +1,5 @@
 import { UserRepository } from "../../repository/user.repository.js";
+import { WalletRepository } from "../../repository/wallet.repository.js";
 import type { CreateUserInput, LoginUserInput } from "../../interfaces/users/user.interface.js";
 import { SessionRepository } from "../../repository/session.repository.js";
 import { hashPassword, comparePassword, } from "../../utils/password.utils.js";
@@ -23,6 +24,7 @@ import { generateRandomToken } from "../../utils/user.utils.js";
 import { RedisService } from "../shared/redis.service.js";
 import { logger } from "../../logger/logger.js";
 import { normalizeEmail } from "../../validators/general.validators.js";
+import { prisma } from "../../config/prisma.js";
 
 
 export class UserService {
@@ -31,14 +33,14 @@ export class UserService {
     private sessionRepository: SessionRepository;
     private otpService: OtpService;
     private emailService: EmailService;
-    private redisService: RedisService
+    private redisService: RedisService;
 
     constructor() {
         this.userRepository = new UserRepository();
         this.sessionRepository = new SessionRepository();
         this.otpService = new OtpService();
         this.emailService = new EmailService();
-        this.redisService = new RedisService()
+        this.redisService = new RedisService();
     }
 
     async registerUser(userData: CreateUserInput) {
@@ -121,7 +123,15 @@ export class UserService {
             otp
         );
 
-        await this.userRepository.verifyUser(user.id);
+        await prisma.$transaction(async (tx) => {
+            const userRepository = new UserRepository(tx);
+            const walletRepository = new WalletRepository(tx);
+
+            await userRepository.verifyUser(user.id);
+
+            await walletRepository.create(user.id);
+        });
+
     }
 
     async resendVerificationOtp(

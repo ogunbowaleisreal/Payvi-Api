@@ -1,10 +1,20 @@
 import { prisma } from "../config/prisma.js";
 import type { CreateUserData } from "../interfaces/users/user.interface.js";
 import type { Gender } from "../generated/prisma/client.js";
+import { PrismaClient, Prisma } from "../generated/prisma/client.js";
+
+type PrismaClientType = PrismaClient | Prisma.TransactionClient;
+
 
 export class UserRepository {
+
+    private prisma: PrismaClientType;
+
+    constructor(prismaClient?: PrismaClientType) {
+        this.prisma = prismaClient ?? prisma;
+    }
     async createUser(payload: CreateUserData) {
-        return prisma.user.create({
+        return this.prisma.user.create({
             data: {
                 firstName: payload.firstName,
                 lastName: payload.lastName,
@@ -15,7 +25,7 @@ export class UserRepository {
     }
 
     async findUserById(id: number) {
-        return prisma.user.findUnique({
+        return this.prisma.user.findUnique({
             where: {
                 id,
             },
@@ -23,7 +33,7 @@ export class UserRepository {
     }
 
     async findUserByEmail(email: string) {
-        return prisma.user.findUnique({
+        return this.prisma.user.findUnique({
             where: {
                 email,
             },
@@ -31,7 +41,7 @@ export class UserRepository {
     }
 
     async updateLastLogin(id: number) {
-        return prisma.user.update({
+        return this.prisma.user.update({
             where: {
                 id,
             },
@@ -42,7 +52,7 @@ export class UserRepository {
     }
 
     async updateVerificationStatus(id: number, isVerified: boolean) {
-        return prisma.user.update({
+        return this.prisma.user.update({
             where: {
                 id,
             },
@@ -53,7 +63,7 @@ export class UserRepository {
     }
 
     async verifyUser(userId: number) {
-        return prisma.user.update({
+        return this.prisma.user.update({
             where: {
                 id: userId,
             },
@@ -67,7 +77,7 @@ export class UserRepository {
         userId: number,
         passwordHash: string
     ) {
-        return prisma.user.update({
+        return this.prisma.user.update({
             where: { id: userId },
             data: {
                 passwordHash,
@@ -76,7 +86,7 @@ export class UserRepository {
     }
 
     async updatePassword(id: number, passwordHash: string) {
-        return prisma.user.update({
+        return this.prisma.user.update({
             where: {
                 id,
             },
@@ -95,7 +105,7 @@ export class UserRepository {
             avatar?: string | null;
         }
     ) {
-        return prisma.user.update({
+        return this.prisma.user.update({
             where: {
                 id: userId,
             },
@@ -107,7 +117,7 @@ export class UserRepository {
         userId: number,
         enabled: boolean
     ) {
-        return prisma.user.update({
+        return this.prisma.user.update({
             where: { id: userId },
             data: {
                 twoFactorEnabled: enabled,
@@ -116,7 +126,7 @@ export class UserRepository {
     }
 
     async deactivateUser(id: number) {
-        return prisma.user.update({
+        return this.prisma.user.update({
             where: {
                 id,
             },

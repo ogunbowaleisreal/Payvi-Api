@@ -618,14 +618,6 @@ export type AdminScalarRelationFilter = {
   isNot?: Prisma.AdminWhereInput
 }
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type AdminCreateNestedManyWithoutRoleInput = {
   create?: Prisma.XOR<Prisma.AdminCreateWithoutRoleInput, Prisma.AdminUncheckedCreateWithoutRoleInput> | Prisma.AdminCreateWithoutRoleInput[] | Prisma.AdminUncheckedCreateWithoutRoleInput[]
   connectOrCreate?: Prisma.AdminCreateOrConnectWithoutRoleInput | Prisma.AdminCreateOrConnectWithoutRoleInput[]

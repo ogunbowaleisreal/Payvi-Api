@@ -7,11 +7,47 @@ datasource db {
   provider = "postgresql"
 }
 
+enum ReferralStatus {
+  PENDING
+  QUALIFIED
+  REWARDED
+  REJECTED
+}
+
+enum WalletTransactionType {
+  CREDIT
+  DEBIT
+}
+
+enum WalletTransactionStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REVERSED
+}
+
+enum TransactionType {
+  AIRTIME
+  DATA
+  ELECTRICITY
+  TV
+  BETTING
+}
+
+enum TransactionStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  REVERSED
+}
+
 enum Gender {
   MALE
   FEMALE
   OTHER
 }
+
 
 model User {
   id           Int    @id @default(autoincrement())
@@ -23,6 +59,11 @@ model User {
   phone  String? @unique @db.VarChar(30)
   gender Gender?
   avatar String? @db.Text
+  totalSpent Decimal @default(0) @map("total_spent") @db.Decimal(18, 2)
+
+
+  referralCode     String? @unique @map("referral_code") @db.VarChar(20)
+  referredByUserId Int?    @map("referred_by_user_id")
 
   isVerified Boolean @default(false) @map("is_verified")
   isActive   Boolean @default(true) @map("is_active")
@@ -32,9 +73,125 @@ model User {
   createdAt        DateTime  @default(now()) @map("created_at")
   twoFactorEnabled Boolean   @default(false) @map("two_factor_enabled")
   updatedAt        DateTime  @updatedAt @map("updated_at")
-  sessions         Session[]
 
+  sessions Session[]
+
+  transactions Transaction[]
+
+  // Referral relationships
+  referredBy User?  @relation("UserReferrals", fields: [referredByUserId], references: [id])
+  referrals  User[] @relation("UserReferrals")
+
+  // Wallet
+  wallet Wallet?
+
+  // Referral records
+  sentReferrals     Referral[] @relation("ReferrerReferrals")
+  receivedReferral  Referral?  @relation("ReferredUser")
+
+  @@index([referredByUserId])
   @@map("users")
+}
+
+
+
+model Referral {
+  id             String         @id @default(uuid())
+  referrerId     Int            @map("referrer_id")
+  referredUserId Int            @unique @map("referred_user_id")
+
+  status       ReferralStatus @default(PENDING)
+  rewardAmount Decimal        @map("reward_amount") @db.Decimal(12, 2)
+
+  qualifyingTransactionId String?   @map("qualifying_transaction_id")
+
+  rewardedAt DateTime? @map("rewarded_at")
+  rejectedAt DateTime? @map("rejected_at")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  referrer     User @relation("ReferrerReferrals", fields: [referrerId], references: [id])
+  referredUser User @relation("ReferredUser", fields: [referredUserId], references: [id])
+
+  @@index([referrerId])
+  @@index([status])
+  @@map("referrals")
+}
+
+
+model Wallet {
+  id     String @id @default(uuid())
+  userId Int    @unique @map("user_id")
+
+  balance Decimal @default(0) @db.Decimal(18, 2)
+
+  transactionPinHash String? @map("transaction_pin_hash")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user         User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions WalletTransaction[]
+
+  @@map("wallets")
+}
+
+model WalletTransaction {
+  id       String                  @id @default(uuid())
+  walletId String                  @map("wallet_id")
+
+  type   WalletTransactionType
+  status WalletTransactionStatus @default(COMPLETED)
+
+  amount      Decimal @db.Decimal(18, 2)
+  reference   String  @unique @db.VarChar(100)
+  description String? @db.VarChar(255)
+
+  metadata Json?
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  wallet Wallet @relation(fields: [walletId], references: [id])
+
+  @@index([walletId])
+  @@index([status])
+  @@index([type])
+  @@index([createdAt])
+  @@map("wallet_transactions")
+}
+
+model Transaction {
+  id String @id @default(uuid())
+
+  userId Int @map("user_id")
+
+  type   TransactionType
+  status TransactionStatus @default(PENDING)
+
+  amount Decimal @db.Decimal(18, 2)
+
+  reference String @unique @db.VarChar(100)
+
+  provider          String? @db.VarChar(50)
+  providerReference String? @map("provider_reference") @db.VarChar(150)
+
+  phoneNumber String? @map("phone_number") @db.VarChar(20)
+
+  metadata Json?
+  providerRequestId String? @map("provider_request_id") @db.VarChar(100)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([type])
+  @@index([status])
+  @@index([createdAt])
+  @@map("transactions")
 }
 
 model Session {

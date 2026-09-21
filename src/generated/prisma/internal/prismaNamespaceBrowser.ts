@@ -52,6 +52,10 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
+  Referral: 'Referral',
+  Wallet: 'Wallet',
+  WalletTransaction: 'WalletTransaction',
+  Transaction: 'Transaction',
   Session: 'Session',
   Admin: 'Admin',
   AdminRole: 'AdminRole',
@@ -86,6 +90,9 @@ export const UserScalarFieldEnum = {
   phone: 'phone',
   gender: 'gender',
   avatar: 'avatar',
+  totalSpent: 'totalSpent',
+  referralCode: 'referralCode',
+  referredByUserId: 'referredByUserId',
   isVerified: 'isVerified',
   isActive: 'isActive',
   lastLoginAt: 'lastLoginAt',
@@ -95,6 +102,69 @@ export const UserScalarFieldEnum = {
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const ReferralScalarFieldEnum = {
+  id: 'id',
+  referrerId: 'referrerId',
+  referredUserId: 'referredUserId',
+  status: 'status',
+  rewardAmount: 'rewardAmount',
+  qualifyingTransactionId: 'qualifyingTransactionId',
+  rewardedAt: 'rewardedAt',
+  rejectedAt: 'rejectedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReferralScalarFieldEnum = (typeof ReferralScalarFieldEnum)[keyof typeof ReferralScalarFieldEnum]
+
+
+export const WalletScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  balance: 'balance',
+  transactionPinHash: 'transactionPinHash',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WalletScalarFieldEnum = (typeof WalletScalarFieldEnum)[keyof typeof WalletScalarFieldEnum]
+
+
+export const WalletTransactionScalarFieldEnum = {
+  id: 'id',
+  walletId: 'walletId',
+  type: 'type',
+  status: 'status',
+  amount: 'amount',
+  reference: 'reference',
+  description: 'description',
+  metadata: 'metadata',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WalletTransactionScalarFieldEnum = (typeof WalletTransactionScalarFieldEnum)[keyof typeof WalletTransactionScalarFieldEnum]
+
+
+export const TransactionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  type: 'type',
+  status: 'status',
+  amount: 'amount',
+  reference: 'reference',
+  provider: 'provider',
+  providerReference: 'providerReference',
+  phoneNumber: 'phoneNumber',
+  metadata: 'metadata',
+  providerRequestId: 'providerRequestId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum]
 
 
 export const SessionScalarFieldEnum = {
