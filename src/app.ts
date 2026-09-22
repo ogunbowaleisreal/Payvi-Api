@@ -3,6 +3,7 @@ import cors from "cors";
 import { errorMiddleware } from "./middleware/errorhandler.js";
 import userRoutes from "./routes/user/index.route.js"
 import adminRoutes from "./routes/admin/index.route.js"
+import webhookRoutes from "./routes/webhook/index.js"
 import { requestLogger } from "./middleware/logger.middleware.js";
 import { rateLimit } from "./middleware/rate.limiter.middeware.js";
 import { generalRateLimit } from "./config/rate.limit.js";
@@ -26,6 +27,7 @@ app.use(rateLimit(generalRateLimit));
 
 app.use("/api/user", userRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/webhook", webhookRoutes);
 
 app.use((_req, res) => {
     res.status(404).json({

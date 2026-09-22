@@ -41,6 +41,16 @@ export class TransactionRepository {
         });
     }
 
+    async findByProviderRequestId(
+        providerRequestId: string
+    ) {
+        return this.prisma.transaction.findFirst({
+            where: {
+                providerRequestId,
+            },
+        });
+    }
+
     async updateProviderDetails(
         id: string,
         data: {

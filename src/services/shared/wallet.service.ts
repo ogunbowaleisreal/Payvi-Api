@@ -2,7 +2,6 @@ import { PrismaClient, Prisma } from "../../generated/prisma/client.js";
 import { WalletRepository } from "../../repository/wallet.repository.js";
 import { WalletTransactionRepository } from "../../repository/wallet.transaction.repository.js";
 import { AppError } from "../../utils/app-error.js";
-import { prisma } from "../../config/prisma.js";
 
 
 type PrismaClientType =
@@ -52,43 +51,133 @@ export class WalletService {
         userId: number,
         amount: number,
         reference: string,
-        description?: string,
-        metadata?: object,
+        description: string,
+        metadata?: Record<string, unknown>
     ) {
-        return prisma.$transaction(async (tx) => {
-            const walletRepository = new WalletRepository(tx);
-            const walletTransactionRepository =
-                new WalletTransactionRepository(tx);
+        const wallet =
+            await this.walletRepository.findByUserId(userId);
 
-            const wallet = await walletRepository.findByUserId(userId);
+        if (!wallet) {
+            throw new AppError(
+                "Wallet not found",
+                404
+            );
+        }
 
-            if (!wallet) {
-                throw new AppError("Wallet not found", 404);
-            }
+        const existingTransaction =
+            await this.walletTransactionRepository
+                .findByReference(reference);
 
-            const existingTransaction =
-                await walletTransactionRepository.findByReference(reference);
+        if (existingTransaction) {
+            return existingTransaction;
+        }
 
-            if (existingTransaction) {
-                return existingTransaction;
-            }
+        await this.walletRepository.incrementBalance(
+            wallet.id,
+            amount
+        );
 
-            await walletRepository.incrementBalance(wallet.id, amount);
-
-            return walletTransactionRepository.create({
-                walletId: wallet.id,
-                type: "CREDIT",
-                status: "COMPLETED",
-                amount,
-                reference,
-                ...(description !== undefined && {
-                    description,
-                }),
-                ...(metadata !== undefined && {
-                    metadata,
-                }),
-            });
+        return this.walletTransactionRepository.create({
+            walletId: wallet.id,
+            type: "CREDIT",
+            status: "COMPLETED",
+            amount,
+            reference,
+            description,
+            metadata,
         });
+    }
+
+    async reserveDebit(
+        userId: number,
+        amount: number,
+        reference: string,
+        description: string,
+        metadata?: Record<string, unknown>
+    ) {
+        const wallet =
+            await this.walletRepository.findByUserId(userId);
+
+        if (!wallet) {
+            throw new AppError(
+                "Wallet not found",
+                404
+            );
+        }
+
+        const existingTransaction =
+            await this.walletTransactionRepository
+                .findByReference(reference);
+
+        if (existingTransaction) {
+            return existingTransaction;
+        }
+
+        /*
+         * Atomically reserve the money.
+         *
+         * This prevents two concurrent requests
+         * from spending the same wallet balance.
+         */
+        const updatedWallet =
+            await this.prismaClient.wallet.updateMany({
+                where: {
+                    id: wallet.id,
+                    balance: {
+                        gte: amount,
+                    },
+                },
+                data: {
+                    balance: {
+                        decrement: amount,
+                    },
+                },
+            });
+
+        if (updatedWallet.count === 0) {
+            throw new AppError(
+                "Insufficient wallet balance",
+                400
+            );
+        }
+
+        return this.walletTransactionRepository.create({
+            walletId: wallet.id,
+            type: "DEBIT",
+            status: "PENDING",
+            amount,
+            reference,
+            description,
+            metadata,
+        });
+    }
+
+    async completeDebit(
+        reference: string
+    ) {
+        const transaction =
+            await this.walletTransactionRepository
+                .findByReference(reference);
+
+        if (!transaction) {
+            throw new AppError(
+                "Wallet transaction not found",
+                404
+            );
+        }
+
+        if (
+            transaction.status ===
+            "COMPLETED"
+        ) {
+            return transaction;
+        }
+
+        return this.walletTransactionRepository
+            .updateStatus(
+                transaction.id,
+                "COMPLETED"
+            );
     }
 
 
@@ -148,5 +237,62 @@ export class WalletService {
                 metadata,
             }),
         });
+    }
+
+
+    async reverseDebit(
+        reference: string,
+        refundReference: string,
+        description: string,
+        metadata?: Record<string, unknown>
+    ) {
+        const debitTransaction =
+            await this.walletTransactionRepository
+                .findByReference(reference);
+
+        if (!debitTransaction) {
+            throw new AppError(
+                "Wallet transaction not found",
+                404
+            );
+        }
+
+        if (
+            debitTransaction.status ===
+            "REVERSED"
+        ) {
+            return debitTransaction;
+        }
+
+        const existingRefund =
+            await this.walletTransactionRepository
+                .findByReference(
+                    refundReference
+                );
+
+        if (existingRefund) {
+            return debitTransaction;
+        }
+
+        await this.walletRepository.incrementBalance(
+            debitTransaction.walletId,
+            Number(debitTransaction.amount)
+        );
+
+        await this.walletTransactionRepository.create({
+            walletId: debitTransaction.walletId,
+            type: "CREDIT",
+            status: "COMPLETED",
+            amount: Number(debitTransaction.amount),
+            reference: refundReference,
+            description,
+            metadata,
+        });
+
+        return this.walletTransactionRepository
+            .updateStatus(
+                debitTransaction.id,
+                "REVERSED"
+            );
     }
 }

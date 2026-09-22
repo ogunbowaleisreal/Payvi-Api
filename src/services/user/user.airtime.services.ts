@@ -99,31 +99,58 @@ export class AirtimeService {
         /*
          * 4. Create Payvi transaction
          */
-
         const transaction =
-            await this.transactionRepository.create({
+            await prisma.$transaction(
+                async (tx) => {
+                    const transactionRepository =
+                        new TransactionRepository(tx);
 
-                user: {
-                    connect: {
-                        id: userId,
-                    },
-                },
+                    const walletService =
+                        new WalletService(tx);
 
-                type: "AIRTIME",
+                    const transaction =
+                        await transactionRepository.create({
+                            user: {
+                                connect: {
+                                    id: userId,
+                                },
+                            },
+                            type: "AIRTIME",
+                            status: "PENDING",
+                            amount: input.amount,
+                            reference,
+                            provider: "VTPASS",
+                            providerRequestId,
+                            phoneNumber:
+                                input.phoneNumber,
+                        });
 
-                status: "PENDING",
+                    await walletService.reserveDebit(
+                        userId,
+                        input.amount,
+                        reference,
+                        "Airtime purchase",
+                        {
+                            transactionId:
+                                transaction.id,
+                            provider:
+                                "VTPASS",
+                            phoneNumber:
+                                input.phoneNumber,
+                            network:
+                                input.network,
+                        }
+                    );
 
-                amount: input.amount,
+                    await transactionRepository
+                        .updateStatus(
+                            transaction.id,
+                            "PROCESSING"
+                        );
 
-                reference,
-
-                provider: "VTPASS",
-
-                providerRequestId,
-
-                phoneNumber:
-                    input.phoneNumber,
-            });
+                    return transaction;
+                }
+            );
 
 
         /*
@@ -134,40 +161,23 @@ export class AirtimeService {
             transaction.id,
             "PROCESSING"
         );
-
-
         /*
          * 6. Call VTpass
          */
-
         let providerResult;
-
         try {
-
             providerResult =
                 await this.vtpassService.purchaseAirtime({
-
                     serviceId,
-
                     phoneNumber:
                         input.phoneNumber,
-
                     amount:
                         input.amount,
-
                     requestId:
                         providerRequestId,
                 });
 
         } catch {
-
-            /*
-             * We don't know whether VTpass
-             * processed the transaction.
-             *
-             * Keep it PROCESSING.
-             */
-
             return {
                 transactionId:
                     transaction.id,
@@ -186,12 +196,9 @@ export class AirtimeService {
                     input.network,
             };
         }
-
-
         /*
          * 7. Save provider response
          */
-
         await this.transactionRepository
             .updateProviderDetails(
                 transaction.id,
@@ -206,132 +213,126 @@ export class AirtimeService {
                         providerResult.status,
                 }
             );
-
-
         /*
          * 8. Provider delivered successfully
          */
 
         if (providerResult.success) {
+            if (providerResult.success) {
+                await prisma.$transaction(
+                    async (tx) => {
+                        const walletService =
+                            new WalletService(tx);
 
-            await prisma.$transaction(
-                async (tx) => {
+                        const transactionRepository =
+                            new TransactionRepository(tx);
 
-                    const walletService =
-                        new WalletService(tx);
-
-                    const transactionRepository =
-                        new TransactionRepository(tx);
-
-
-                    /*
-                     * Debit wallet + create
-                     * wallet ledger entry.
-                     */
-
-                    await walletService.debit(
-
-                        userId,
-
-                        input.amount,
-
-                        reference,
-
-                        "Airtime purchase",
-
-                        {
-                            transactionId:
-                                transaction.id,
-
-                            provider:
-                                "VTPASS",
-
-                            providerReference:
-                                providerResult
-                                    .providerReference,
-
-                            phoneNumber:
-                                input.phoneNumber,
-
-                            network:
-                                input.network,
-                        }
-                    );
-
-
-                    /*
-                     * Mark service transaction
-                     * as completed.
-                     */
-
-                    await transactionRepository
-                        .updateStatus(
-                            transaction.id,
-                            "COMPLETED"
+                        await walletService.completeDebit(
+                            reference
                         );
 
+                        await transactionRepository
+                            .updateProviderDetails(
+                                transaction.id,
+                                {
+                                    providerRequestId:
+                                        providerResult.requestId,
+                                    providerReference:
+                                        providerResult.providerReference,
+                                    providerStatus:
+                                        providerResult.status,
+                                }
+                            );
 
-                    /*
-                     * Update total spent.
-                     */
+                        await transactionRepository
+                            .updateStatus(
+                                transaction.id,
+                                "COMPLETED"
+                            );
 
-                    await tx.user.update({
-
-                        where: {
-                            id: userId,
-                        },
-
-                        data: {
-                            totalSpent: {
-                                increment:
-                                    input.amount,
+                        await tx.user.update({
+                            where: {
+                                id: userId,
                             },
-                        },
-                    });
+                            data: {
+                                totalSpent: {
+                                    increment:
+                                        input.amount,
+                                },
+                            },
+                        });
+                    }
+                );
 
-                }
-            );
+                return {
+                    transactionId:
+                        transaction.id,
+                    reference,
+                    status: "COMPLETED",
+                    amount: input.amount,
+                    phoneNumber:
+                        input.phoneNumber,
+                    network:
+                        input.network,
+                    providerReference:
+                        providerResult
+                            .providerReference,
+                };
+            }
 
 
-            return {
-
-                transactionId:
-                    transaction.id,
-
-                reference,
-
-                status: "COMPLETED",
-
-                amount:
-                    input.amount,
-
-                phoneNumber:
-                    input.phoneNumber,
-
-                network:
-                    input.network,
-
-                providerReference:
-                    providerResult
-                        .providerReference,
-            };
         }
 
 
         /*
          * 9. Definitive provider failure
          */
-
         if (
             providerResult.status ===
             "failed"
         ) {
+            await prisma.$transaction(
+                async (tx) => {
+                    const walletService =
+                        new WalletService(tx);
 
-            await this.transactionRepository
-                .updateStatus(
-                    transaction.id,
-                    "FAILED"
-                );
+                    const transactionRepository =
+                        new TransactionRepository(tx);
+
+                    await walletService.reverseDebit(
+                        reference,
+                        `REFUND-${reference}`,
+                        "Airtime purchase failed",
+                        {
+                            transactionId:
+                                transaction.id,
+                            provider:
+                                "VTPASS",
+                            providerReference:
+                                providerResult.providerReference,
+                        }
+                    );
+
+                    await transactionRepository
+                        .updateProviderDetails(
+                            transaction.id,
+                            {
+                                providerRequestId:
+                                    providerResult.requestId,
+                                providerReference:
+                                    providerResult.providerReference,
+                                providerStatus:
+                                    providerResult.status,
+                            }
+                        );
+
+                    await transactionRepository
+                        .updateStatus(
+                            transaction.id,
+                            "FAILED"
+                        );
+                }
+            );
 
             throw new AppError(
                 providerResult.message ??
