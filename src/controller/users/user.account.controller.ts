@@ -50,4 +50,10 @@ export class AccountController {
             "Profile updated successfully"
         );
     }
+
+    async getUserProfile(req: ClientAuthenticatedRequest, res: Response) {
+        const user = await this.accountService.getUserProfile(req.userId as number);
+
+        return sendSuccess(res, user, "User profile fetched successfully");
+    }
 }

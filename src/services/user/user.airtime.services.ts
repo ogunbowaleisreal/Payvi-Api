@@ -6,16 +6,19 @@ import { prisma } from "../../config/prisma.js";
 import { TransactionRepository } from "../../repository/transaction.repository.js";
 import { WalletService } from "../../services/shared/wallet.service.js";
 import { TransactionPinService } from "../shared/transaction.pin.services.js";
-import { VtpassService } from "../../providers/VTpass/vtpass.airtime.provider.js";
+// import { VtpassService } from "../../providers/VTpass/vtpass.airtime.provider.js";
 import type { PurchaseAirtimeInput } from "../../interfaces/users/user.airtime.interface.js";
-import { generateVtpassRequestId } from "../../utils/vtpass.utils.js";
+import {
+    ClubkonnectService,
+} from "../../providers/ClubKonnect/clubkonnect.service.js";
+// import { generateVtpassRequestId } from "../../utils/vtpass.utils.js";
 
 
 export class AirtimeService {
     private transactionRepository: TransactionRepository;
     // private walletService: WalletService;
     private transactionPinService: TransactionPinService;
-    private vtpassService: VtpassService;
+    private clubkonnectService: ClubkonnectService;
 
     constructor() {
         this.transactionRepository =
@@ -27,33 +30,34 @@ export class AirtimeService {
         this.transactionPinService =
             new TransactionPinService();
 
-        this.vtpassService =
-            new VtpassService();
+        // this.vtpassService =
+        //     new VtpassService();
+
+        this.clubkonnectService =
+            new ClubkonnectService();
     }
 
-    private getVtpassServiceId(
+    private validateNetwork(
         network: string
-    ): string {
-        switch (
-        network.toUpperCase()
+    ): void {
+
+        const supportedNetworks = [
+            "MTN",
+            "GLO",
+            "AIRTEL",
+            "NINEMOBILE",
+            "T2MOBILE",
+        ];
+
+        if (
+            !supportedNetworks.includes(
+                network.toUpperCase()
+            )
         ) {
-            case "MTN":
-                return "mtn";
-
-            case "GLO":
-                return "glo";
-
-            case "AIRTEL":
-                return "airtel";
-
-            case "NINEMOBILE":
-                return "etisalat";
-
-            default:
-                throw new AppError(
-                    "Unsupported network",
-                    400
-                );
+            throw new AppError(
+                "Unsupported network",
+                400
+            );
         }
     }
 
@@ -74,7 +78,6 @@ export class AirtimeService {
             input.transactionPin
         );
 
-
         /*
          * 2. Generate references
          */
@@ -82,18 +85,23 @@ export class AirtimeService {
         const reference =
             `PAY-${randomUUID()}`;
 
-        const providerRequestId =
-            generateVtpassRequestId();
+        // const providerRequestId =
+        //generateVtpassRequestId();
+        const providerRequestId = `PAYVI-${randomUUID()}`;
 
 
         /*
          * 3. Resolve VTpass service ID
          */
 
-        const serviceId =
-            this.getVtpassServiceId(
-                input.network
-            );
+        // const serviceId =
+        //     this.getVtpassServiceId(
+        //         input.network
+        //     );
+
+        this.validateNetwork(
+            input.network
+        );
 
 
         /*
@@ -119,7 +127,8 @@ export class AirtimeService {
                             status: "PENDING",
                             amount: input.amount,
                             reference,
-                            provider: "VTPASS",
+                            provider: "CLUBKONNECT",
+                            //provider: "VTPASS",
                             providerRequestId,
                             phoneNumber:
                                 input.phoneNumber,
@@ -133,8 +142,9 @@ export class AirtimeService {
                         {
                             transactionId:
                                 transaction.id,
-                            provider:
-                                "VTPASS",
+                            // provider:
+                            //     "VTPASS",
+                            provider: "CLUBKONNECT",
                             phoneNumber:
                                 input.phoneNumber,
                             network:
@@ -161,23 +171,45 @@ export class AirtimeService {
             transaction.id,
             "PROCESSING"
         );
+
+
         /*
-         * 6. Call VTpass
-         */
+ * 6. Call Clubkonnect
+ */
+
         let providerResult;
+
         try {
             providerResult =
-                await this.vtpassService.purchaseAirtime({
-                    serviceId,
+                await this.clubkonnectService.purchaseAirtime({
+                    network:
+                        input.network,
+
                     phoneNumber:
                         input.phoneNumber,
+
                     amount:
                         input.amount,
+
                     requestId:
                         providerRequestId,
                 });
 
-        } catch {
+        } catch (error) {
+
+            console.error(
+                "Clubkonnect airtime request failed:",
+                error
+            );
+
+            /*
+             * A network error or timeout does not prove
+             * that the provider failed to process the order.
+             *
+             * Keep the reserved debit and resolve the
+             * transaction using the query endpoint.
+             */
+
             return {
                 transactionId:
                     transaction.id,
@@ -199,20 +231,16 @@ export class AirtimeService {
         /*
          * 7. Save provider response
          */
-        await this.transactionRepository
-            .updateProviderDetails(
-                transaction.id,
-                {
-                    providerRequestId:
-                        providerResult.requestId,
-
-                    providerReference:
-                        providerResult.providerReference,
-
-                    providerStatus:
-                        providerResult.status,
-                }
-            );
+        await this.transactionRepository.updateProviderDetails(
+            transaction.id,
+            {
+                providerRequestId: providerResult.requestId,
+                ...(providerResult.providerReference !== undefined && {
+                    providerReference: providerResult.providerReference,
+                }),
+                providerStatus: providerResult.status,
+            }
+        );
         /*
          * 8. Provider delivered successfully
          */
@@ -231,18 +259,16 @@ export class AirtimeService {
                             reference
                         );
 
-                        await transactionRepository
-                            .updateProviderDetails(
-                                transaction.id,
-                                {
-                                    providerRequestId:
-                                        providerResult.requestId,
-                                    providerReference:
-                                        providerResult.providerReference,
-                                    providerStatus:
-                                        providerResult.status,
-                                }
-                            );
+                        await this.transactionRepository.updateProviderDetails(
+                            transaction.id,
+                            {
+                                providerRequestId: providerResult.requestId,
+                                ...(providerResult.providerReference !== undefined && {
+                                    providerReference: providerResult.providerReference,
+                                }),
+                                providerStatus: providerResult.status,
+                            }
+                        );
 
                         await transactionRepository
                             .updateStatus(
@@ -312,19 +338,16 @@ export class AirtimeService {
                                 providerResult.providerReference,
                         }
                     );
-
-                    await transactionRepository
-                        .updateProviderDetails(
-                            transaction.id,
-                            {
-                                providerRequestId:
-                                    providerResult.requestId,
-                                providerReference:
-                                    providerResult.providerReference,
-                                providerStatus:
-                                    providerResult.status,
-                            }
-                        );
+                    await this.transactionRepository.updateProviderDetails(
+                        transaction.id,
+                        {
+                            providerRequestId: providerResult.requestId,
+                            ...(providerResult.providerReference !== undefined && {
+                                providerReference: providerResult.providerReference,
+                            }),
+                            providerStatus: providerResult.status,
+                        }
+                    );
 
                     await transactionRepository
                         .updateStatus(
@@ -366,4 +389,264 @@ export class AirtimeService {
                 input.network,
         };
     }
+
+
+
+    async requeryAirtimeTransaction(
+        transactionId: string
+    ) {
+        const transaction =
+            await this.transactionRepository.findById(
+                transactionId
+            );
+
+        if (!transaction) {
+            throw new AppError(
+                "Transaction not found",
+                404
+            );
+        }
+
+        if (!transaction.providerRequestId) {
+            throw new AppError(
+                "Provider request ID not found",
+                400
+            );
+        }
+
+        if (
+            transaction.status === "COMPLETED" ||
+            transaction.status === "FAILED" ||
+            transaction.status === "REVERSED"
+        ) {
+            return {
+                transactionId: transaction.id,
+                reference: transaction.reference,
+                status: transaction.status,
+            };
+        }
+
+        let providerResult;
+
+        try {
+            providerResult =
+                await this.clubkonnectService
+                    .requeryTransaction(
+                        transaction.providerRequestId
+                    );
+        } catch {
+            return {
+                transactionId: transaction.id,
+                reference: transaction.reference,
+                status: "PROCESSING",
+            };
+        }
+
+        await this.transactionRepository.updateProviderDetails(
+            transaction.id,
+            {
+                providerRequestId: providerResult.requestId,
+                ...(providerResult.providerReference !== undefined && {
+                    providerReference: providerResult.providerReference,
+                }),
+                providerStatus: providerResult.status,
+            }
+        );
+
+        if (
+            providerResult.status ===
+            "delivered"
+        ) {
+            await prisma.$transaction(
+                async (tx) => {
+                    const transactionRepository =
+                        new TransactionRepository(tx);
+
+                    const walletService =
+                        new WalletService(tx);
+
+                    const currentTransaction =
+                        await transactionRepository
+                            .findById(transaction.id);
+
+                    if (!currentTransaction) {
+                        return;
+                    }
+
+                    if (
+                        currentTransaction.status ===
+                        "COMPLETED"
+                    ) {
+                        return;
+                    }
+
+                    await walletService.completeDebit(
+                        currentTransaction.reference
+                    );
+
+                    await transactionRepository
+                        .updateStatus(
+                            currentTransaction.id,
+                            "COMPLETED"
+                        );
+
+                    await tx.user.update({
+                        where: {
+                            id: currentTransaction.userId,
+                        },
+                        data: {
+                            totalSpent: {
+                                increment:
+                                    Number(
+                                        currentTransaction
+                                            .amount
+                                    ),
+                            },
+                        },
+                    });
+                }
+            );
+
+            return {
+                transactionId: transaction.id,
+                reference: transaction.reference,
+                status: "COMPLETED",
+                providerReference:
+                    providerResult.providerReference,
+            };
+        }
+
+        if (
+            providerResult.status ===
+            "failed"
+        ) {
+            await prisma.$transaction(
+                async (tx) => {
+                    const transactionRepository =
+                        new TransactionRepository(tx);
+
+                    const walletService =
+                        new WalletService(tx);
+
+                    const currentTransaction =
+                        await transactionRepository
+                            .findById(transaction.id);
+
+                    if (!currentTransaction) {
+                        return;
+                    }
+
+                    if (
+                        currentTransaction.status ===
+                        "FAILED"
+                    ) {
+                        return;
+                    }
+
+                    await walletService.reverseDebit(
+                        currentTransaction.reference,
+                        `REFUND-${currentTransaction.reference}`,
+                        "Airtime purchase failed",
+                        {
+                            transactionId: currentTransaction.id,
+                            provider: "CLUBKONNECT",
+                            ...(providerResult.providerReference !== undefined && {
+                                providerReference: providerResult.providerReference,
+                            }),
+                        }
+                    );
+
+                    await transactionRepository
+                        .updateStatus(
+                            currentTransaction.id,
+                            "FAILED"
+                        );
+                }
+            );
+
+            return {
+                transactionId: transaction.id,
+                reference: transaction.reference,
+                status: "FAILED",
+            };
+        }
+
+        // if (
+        //     providerResult.status ===
+        //     "reversed"
+        // ) {
+        //     await prisma.$transaction(
+        //         async (tx) => {
+        //             const transactionRepository =
+        //                 new TransactionRepository(tx);
+
+        //             const walletService =
+        //                 new WalletService(tx);
+
+        //             const currentTransaction =
+        //                 await transactionRepository
+        //                     .findById(transaction.id);
+
+        //             if (!currentTransaction) {
+        //                 return;
+        //             }
+
+        //             if (
+        //                 currentTransaction.status ===
+        //                 "REVERSED"
+        //             ) {
+        //                 return;
+        //             }
+
+        //             await walletService.reverseDebit(
+        //                 currentTransaction.reference,
+        //                 `REFUND-${currentTransaction.reference}`,
+        //                 "VTpass transaction reversal",
+        //                 {
+        //                     transactionId:
+        //                         currentTransaction.id,
+        //                     provider: "VTPASS",
+        //                     providerReference:
+        //                         providerResult.providerReference,
+        //                 }
+        //             );
+
+        //             await transactionRepository
+        //                 .updateStatus(
+        //                     currentTransaction.id,
+        //                     "REVERSED"
+        //                 );
+
+        //             await tx.user.update({
+        //                 where: {
+        //                     id: currentTransaction.userId,
+        //                 },
+        //                 data: {
+        //                     totalSpent: {
+        //                         decrement:
+        //                             Number(
+        //                                 currentTransaction
+        //                                     .amount
+        //                             ),
+        //                     },
+        //                 },
+        //             });
+        //         }
+        //     );
+
+        //     return {
+        //         transactionId: transaction.id,
+        //         reference: transaction.reference,
+        //         status: "REVERSED",
+        //     };
+        // }
+
+        return {
+            transactionId: transaction.id,
+            reference: transaction.reference,
+            status: "PROCESSING",
+        };
+    }
+
+
 }

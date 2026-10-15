@@ -28,148 +28,148 @@ export type AggregateUser = {
 
 export type UserAvgAggregateOutputType = {
   id: number | null
-  totalSpent: runtime.Decimal | null
   referredByUserId: number | null
+  totalSpent: runtime.Decimal | null
 }
 
 export type UserSumAggregateOutputType = {
   id: number | null
-  totalSpent: runtime.Decimal | null
   referredByUserId: number | null
+  totalSpent: runtime.Decimal | null
 }
 
 export type UserMinAggregateOutputType = {
   id: number | null
-  firstName: string | null
-  lastName: string | null
   email: string | null
   passwordHash: string | null
   phone: string | null
   gender: $Enums.Gender | null
   avatar: string | null
-  totalSpent: runtime.Decimal | null
-  referralCode: string | null
-  referredByUserId: number | null
   isVerified: boolean | null
   isActive: boolean | null
   lastLoginAt: Date | null
   createdAt: Date | null
-  twoFactorEnabled: boolean | null
   updatedAt: Date | null
+  twoFactorEnabled: boolean | null
+  firstName: string | null
+  lastName: string | null
+  referralCode: string | null
+  referredByUserId: number | null
+  totalSpent: runtime.Decimal | null
 }
 
 export type UserMaxAggregateOutputType = {
   id: number | null
-  firstName: string | null
-  lastName: string | null
   email: string | null
   passwordHash: string | null
   phone: string | null
   gender: $Enums.Gender | null
   avatar: string | null
-  totalSpent: runtime.Decimal | null
-  referralCode: string | null
-  referredByUserId: number | null
   isVerified: boolean | null
   isActive: boolean | null
   lastLoginAt: Date | null
   createdAt: Date | null
-  twoFactorEnabled: boolean | null
   updatedAt: Date | null
+  twoFactorEnabled: boolean | null
+  firstName: string | null
+  lastName: string | null
+  referralCode: string | null
+  referredByUserId: number | null
+  totalSpent: runtime.Decimal | null
 }
 
 export type UserCountAggregateOutputType = {
   id: number
-  firstName: number
-  lastName: number
   email: number
   passwordHash: number
   phone: number
   gender: number
   avatar: number
-  totalSpent: number
-  referralCode: number
-  referredByUserId: number
   isVerified: number
   isActive: number
   lastLoginAt: number
   createdAt: number
-  twoFactorEnabled: number
   updatedAt: number
+  twoFactorEnabled: number
+  firstName: number
+  lastName: number
+  referralCode: number
+  referredByUserId: number
+  totalSpent: number
   _all: number
 }
 
 
 export type UserAvgAggregateInputType = {
   id?: true
-  totalSpent?: true
   referredByUserId?: true
+  totalSpent?: true
 }
 
 export type UserSumAggregateInputType = {
   id?: true
-  totalSpent?: true
   referredByUserId?: true
+  totalSpent?: true
 }
 
 export type UserMinAggregateInputType = {
   id?: true
-  firstName?: true
-  lastName?: true
   email?: true
   passwordHash?: true
   phone?: true
   gender?: true
   avatar?: true
-  totalSpent?: true
-  referralCode?: true
-  referredByUserId?: true
   isVerified?: true
   isActive?: true
   lastLoginAt?: true
   createdAt?: true
-  twoFactorEnabled?: true
   updatedAt?: true
+  twoFactorEnabled?: true
+  firstName?: true
+  lastName?: true
+  referralCode?: true
+  referredByUserId?: true
+  totalSpent?: true
 }
 
 export type UserMaxAggregateInputType = {
   id?: true
-  firstName?: true
-  lastName?: true
   email?: true
   passwordHash?: true
   phone?: true
   gender?: true
   avatar?: true
-  totalSpent?: true
-  referralCode?: true
-  referredByUserId?: true
   isVerified?: true
   isActive?: true
   lastLoginAt?: true
   createdAt?: true
-  twoFactorEnabled?: true
   updatedAt?: true
+  twoFactorEnabled?: true
+  firstName?: true
+  lastName?: true
+  referralCode?: true
+  referredByUserId?: true
+  totalSpent?: true
 }
 
 export type UserCountAggregateInputType = {
   id?: true
-  firstName?: true
-  lastName?: true
   email?: true
   passwordHash?: true
   phone?: true
   gender?: true
   avatar?: true
-  totalSpent?: true
-  referralCode?: true
-  referredByUserId?: true
   isVerified?: true
   isActive?: true
   lastLoginAt?: true
   createdAt?: true
-  twoFactorEnabled?: true
   updatedAt?: true
+  twoFactorEnabled?: true
+  firstName?: true
+  lastName?: true
+  referralCode?: true
+  referredByUserId?: true
+  totalSpent?: true
   _all?: true
 }
 
@@ -261,22 +261,22 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type UserGroupByOutputType = {
   id: number
-  firstName: string
-  lastName: string
   email: string
   passwordHash: string
   phone: string | null
   gender: $Enums.Gender | null
   avatar: string | null
-  totalSpent: runtime.Decimal
-  referralCode: string | null
-  referredByUserId: number | null
   isVerified: boolean
   isActive: boolean
   lastLoginAt: Date | null
   createdAt: Date
-  twoFactorEnabled: boolean
   updatedAt: Date
+  twoFactorEnabled: boolean
+  firstName: string
+  lastName: string
+  referralCode: string | null
+  referredByUserId: number | null
+  totalSpent: runtime.Decimal
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -304,56 +304,56 @@ export type UserWhereInput = {
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   id?: Prisma.IntFilter<"User"> | number
-  firstName?: Prisma.StringFilter<"User"> | string
-  lastName?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
   passwordHash?: Prisma.StringFilter<"User"> | string
   phone?: Prisma.StringNullableFilter<"User"> | string | null
   gender?: Prisma.EnumGenderNullableFilter<"User"> | $Enums.Gender | null
   avatar?: Prisma.StringNullableFilter<"User"> | string | null
-  totalSpent?: Prisma.DecimalFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: Prisma.StringNullableFilter<"User"> | string | null
-  referredByUserId?: Prisma.IntNullableFilter<"User"> | number | null
   isVerified?: Prisma.BoolFilter<"User"> | boolean
   isActive?: Prisma.BoolFilter<"User"> | boolean
   lastLoginAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  twoFactorEnabled?: Prisma.BoolFilter<"User"> | boolean
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  twoFactorEnabled?: Prisma.BoolFilter<"User"> | boolean
+  firstName?: Prisma.StringFilter<"User"> | string
+  lastName?: Prisma.StringFilter<"User"> | string
+  referralCode?: Prisma.StringNullableFilter<"User"> | string | null
+  referredByUserId?: Prisma.IntNullableFilter<"User"> | number | null
+  totalSpent?: Prisma.DecimalFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.XOR<Prisma.ReferralNullableScalarRelationFilter, Prisma.ReferralWhereInput> | null
+  sentReferrals?: Prisma.ReferralListRelationFilter
   sessions?: Prisma.SessionListRelationFilter
   transactions?: Prisma.TransactionListRelationFilter
   referredBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   referrals?: Prisma.UserListRelationFilter
   wallet?: Prisma.XOR<Prisma.WalletNullableScalarRelationFilter, Prisma.WalletWhereInput> | null
-  sentReferrals?: Prisma.ReferralListRelationFilter
-  receivedReferral?: Prisma.XOR<Prisma.ReferralNullableScalarRelationFilter, Prisma.ReferralWhereInput> | null
 }
 
 export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  firstName?: Prisma.SortOrder
-  lastName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
   avatar?: Prisma.SortOrderInput | Prisma.SortOrder
-  totalSpent?: Prisma.SortOrder
-  referralCode?: Prisma.SortOrderInput | Prisma.SortOrder
-  referredByUserId?: Prisma.SortOrderInput | Prisma.SortOrder
   isVerified?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   lastLoginAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  twoFactorEnabled?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  twoFactorEnabled?: Prisma.SortOrder
+  firstName?: Prisma.SortOrder
+  lastName?: Prisma.SortOrder
+  referralCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  referredByUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  totalSpent?: Prisma.SortOrder
+  receivedReferral?: Prisma.ReferralOrderByWithRelationInput
+  sentReferrals?: Prisma.ReferralOrderByRelationAggregateInput
   sessions?: Prisma.SessionOrderByRelationAggregateInput
   transactions?: Prisma.TransactionOrderByRelationAggregateInput
   referredBy?: Prisma.UserOrderByWithRelationInput
   referrals?: Prisma.UserOrderByRelationAggregateInput
   wallet?: Prisma.WalletOrderByWithRelationInput
-  sentReferrals?: Prisma.ReferralOrderByRelationAggregateInput
-  receivedReferral?: Prisma.ReferralOrderByWithRelationInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -364,46 +364,46 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
-  firstName?: Prisma.StringFilter<"User"> | string
-  lastName?: Prisma.StringFilter<"User"> | string
   passwordHash?: Prisma.StringFilter<"User"> | string
   gender?: Prisma.EnumGenderNullableFilter<"User"> | $Enums.Gender | null
   avatar?: Prisma.StringNullableFilter<"User"> | string | null
-  totalSpent?: Prisma.DecimalFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  referredByUserId?: Prisma.IntNullableFilter<"User"> | number | null
   isVerified?: Prisma.BoolFilter<"User"> | boolean
   isActive?: Prisma.BoolFilter<"User"> | boolean
   lastLoginAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  twoFactorEnabled?: Prisma.BoolFilter<"User"> | boolean
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  twoFactorEnabled?: Prisma.BoolFilter<"User"> | boolean
+  firstName?: Prisma.StringFilter<"User"> | string
+  lastName?: Prisma.StringFilter<"User"> | string
+  referredByUserId?: Prisma.IntNullableFilter<"User"> | number | null
+  totalSpent?: Prisma.DecimalFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.XOR<Prisma.ReferralNullableScalarRelationFilter, Prisma.ReferralWhereInput> | null
+  sentReferrals?: Prisma.ReferralListRelationFilter
   sessions?: Prisma.SessionListRelationFilter
   transactions?: Prisma.TransactionListRelationFilter
   referredBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   referrals?: Prisma.UserListRelationFilter
   wallet?: Prisma.XOR<Prisma.WalletNullableScalarRelationFilter, Prisma.WalletWhereInput> | null
-  sentReferrals?: Prisma.ReferralListRelationFilter
-  receivedReferral?: Prisma.XOR<Prisma.ReferralNullableScalarRelationFilter, Prisma.ReferralWhereInput> | null
 }, "id" | "email" | "phone" | "referralCode">
 
 export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  firstName?: Prisma.SortOrder
-  lastName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
   avatar?: Prisma.SortOrderInput | Prisma.SortOrder
-  totalSpent?: Prisma.SortOrder
-  referralCode?: Prisma.SortOrderInput | Prisma.SortOrder
-  referredByUserId?: Prisma.SortOrderInput | Prisma.SortOrder
   isVerified?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   lastLoginAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  twoFactorEnabled?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  twoFactorEnabled?: Prisma.SortOrder
+  firstName?: Prisma.SortOrder
+  lastName?: Prisma.SortOrder
+  referralCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  referredByUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  totalSpent?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -416,182 +416,182 @@ export type UserScalarWhereWithAggregatesInput = {
   OR?: Prisma.UserScalarWhereWithAggregatesInput[]
   NOT?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"User"> | number
-  firstName?: Prisma.StringWithAggregatesFilter<"User"> | string
-  lastName?: Prisma.StringWithAggregatesFilter<"User"> | string
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   passwordHash?: Prisma.StringWithAggregatesFilter<"User"> | string
   phone?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   gender?: Prisma.EnumGenderNullableWithAggregatesFilter<"User"> | $Enums.Gender | null
   avatar?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  totalSpent?: Prisma.DecimalWithAggregatesFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  referredByUserId?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
   isVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   isActive?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   lastLoginAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
-  twoFactorEnabled?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
+  twoFactorEnabled?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  firstName?: Prisma.StringWithAggregatesFilter<"User"> | string
+  lastName?: Prisma.StringWithAggregatesFilter<"User"> | string
+  referralCode?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  referredByUserId?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  totalSpent?: Prisma.DecimalWithAggregatesFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type UserCreateInput = {
-  firstName: string
-  lastName: string
   email: string
   passwordHash: string
   phone?: string | null
   gender?: $Enums.Gender | null
   avatar?: string | null
-  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: string | null
   isVerified?: boolean
   isActive?: boolean
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
-  twoFactorEnabled?: boolean
   updatedAt?: Date | string
+  twoFactorEnabled?: boolean
+  firstName: string
+  lastName: string
+  referralCode?: string | null
+  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralCreateNestedOneWithoutReferredUserInput
+  sentReferrals?: Prisma.ReferralCreateNestedManyWithoutReferrerInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
   referredBy?: Prisma.UserCreateNestedOneWithoutReferralsInput
   referrals?: Prisma.UserCreateNestedManyWithoutReferredByInput
   wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
-  sentReferrals?: Prisma.ReferralCreateNestedManyWithoutReferrerInput
-  receivedReferral?: Prisma.ReferralCreateNestedOneWithoutReferredUserInput
 }
 
 export type UserUncheckedCreateInput = {
   id?: number
-  firstName: string
-  lastName: string
   email: string
   passwordHash: string
   phone?: string | null
   gender?: $Enums.Gender | null
   avatar?: string | null
-  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: string | null
-  referredByUserId?: number | null
   isVerified?: boolean
   isActive?: boolean
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
-  twoFactorEnabled?: boolean
   updatedAt?: Date | string
+  twoFactorEnabled?: boolean
+  firstName: string
+  lastName: string
+  referralCode?: string | null
+  referredByUserId?: number | null
+  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralUncheckedCreateNestedOneWithoutReferredUserInput
+  sentReferrals?: Prisma.ReferralUncheckedCreateNestedManyWithoutReferrerInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
   referrals?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByInput
   wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
-  sentReferrals?: Prisma.ReferralUncheckedCreateNestedManyWithoutReferrerInput
-  receivedReferral?: Prisma.ReferralUncheckedCreateNestedOneWithoutReferredUserInput
 }
 
 export type UserUpdateInput = {
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralUpdateOneWithoutReferredUserNestedInput
+  sentReferrals?: Prisma.ReferralUpdateManyWithoutReferrerNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
   referredBy?: Prisma.UserUpdateOneWithoutReferralsNestedInput
   referrals?: Prisma.UserUpdateManyWithoutReferredByNestedInput
   wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
-  sentReferrals?: Prisma.ReferralUpdateManyWithoutReferrerNestedInput
-  receivedReferral?: Prisma.ReferralUpdateOneWithoutReferredUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referredByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralUncheckedUpdateOneWithoutReferredUserNestedInput
+  sentReferrals?: Prisma.ReferralUncheckedUpdateManyWithoutReferrerNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
   referrals?: Prisma.UserUncheckedUpdateManyWithoutReferredByNestedInput
   wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
-  sentReferrals?: Prisma.ReferralUncheckedUpdateManyWithoutReferrerNestedInput
-  receivedReferral?: Prisma.ReferralUncheckedUpdateOneWithoutReferredUserNestedInput
 }
 
 export type UserCreateManyInput = {
   id?: number
-  firstName: string
-  lastName: string
   email: string
   passwordHash: string
   phone?: string | null
   gender?: $Enums.Gender | null
   avatar?: string | null
-  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: string | null
-  referredByUserId?: number | null
   isVerified?: boolean
   isActive?: boolean
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
-  twoFactorEnabled?: boolean
   updatedAt?: Date | string
+  twoFactorEnabled?: boolean
+  firstName: string
+  lastName: string
+  referralCode?: string | null
+  referredByUserId?: number | null
+  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type UserUpdateManyMutationInput = {
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type UserUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referredByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type UserNullableScalarRelationFilter = {
@@ -611,74 +611,74 @@ export type UserOrderByRelationAggregateInput = {
 
 export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  firstName?: Prisma.SortOrder
-  lastName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   avatar?: Prisma.SortOrder
-  totalSpent?: Prisma.SortOrder
-  referralCode?: Prisma.SortOrder
-  referredByUserId?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   lastLoginAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  twoFactorEnabled?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  twoFactorEnabled?: Prisma.SortOrder
+  firstName?: Prisma.SortOrder
+  lastName?: Prisma.SortOrder
+  referralCode?: Prisma.SortOrder
+  referredByUserId?: Prisma.SortOrder
+  totalSpent?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  totalSpent?: Prisma.SortOrder
   referredByUserId?: Prisma.SortOrder
+  totalSpent?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  firstName?: Prisma.SortOrder
-  lastName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   avatar?: Prisma.SortOrder
-  totalSpent?: Prisma.SortOrder
-  referralCode?: Prisma.SortOrder
-  referredByUserId?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   lastLoginAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  twoFactorEnabled?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  twoFactorEnabled?: Prisma.SortOrder
+  firstName?: Prisma.SortOrder
+  lastName?: Prisma.SortOrder
+  referralCode?: Prisma.SortOrder
+  referredByUserId?: Prisma.SortOrder
+  totalSpent?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  firstName?: Prisma.SortOrder
-  lastName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   avatar?: Prisma.SortOrder
-  totalSpent?: Prisma.SortOrder
-  referralCode?: Prisma.SortOrder
-  referredByUserId?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   lastLoginAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  twoFactorEnabled?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  twoFactorEnabled?: Prisma.SortOrder
+  firstName?: Prisma.SortOrder
+  lastName?: Prisma.SortOrder
+  referralCode?: Prisma.SortOrder
+  referredByUserId?: Prisma.SortOrder
+  totalSpent?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  totalSpent?: Prisma.SortOrder
   referredByUserId?: Prisma.SortOrder
+  totalSpent?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
@@ -718,14 +718,6 @@ export type NullableEnumGenderFieldUpdateOperationsInput = {
   set?: $Enums.Gender | null
 }
 
-export type DecimalFieldUpdateOperationsInput = {
-  set?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
-}
-
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
@@ -736,6 +728,14 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
+}
+
+export type DecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type UserUpdateOneWithoutReferralsNestedInput = {
@@ -792,24 +792,16 @@ export type UserUncheckedUpdateManyWithoutReferredByNestedInput = {
   deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
 }
 
-export type UserCreateNestedOneWithoutSentReferralsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutSentReferralsInput, Prisma.UserUncheckedCreateWithoutSentReferralsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSentReferralsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
 export type UserCreateNestedOneWithoutReceivedReferralInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutReceivedReferralInput, Prisma.UserUncheckedCreateWithoutReceivedReferralInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutReceivedReferralInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutSentReferralsNestedInput = {
+export type UserCreateNestedOneWithoutSentReferralsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutSentReferralsInput, Prisma.UserUncheckedCreateWithoutSentReferralsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutSentReferralsInput
-  upsert?: Prisma.UserUpsertWithoutSentReferralsInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSentReferralsInput, Prisma.UserUpdateWithoutSentReferralsInput>, Prisma.UserUncheckedUpdateWithoutSentReferralsInput>
 }
 
 export type UserUpdateOneRequiredWithoutReceivedReferralNestedInput = {
@@ -818,6 +810,14 @@ export type UserUpdateOneRequiredWithoutReceivedReferralNestedInput = {
   upsert?: Prisma.UserUpsertWithoutReceivedReferralInput
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReceivedReferralInput, Prisma.UserUpdateWithoutReceivedReferralInput>, Prisma.UserUncheckedUpdateWithoutReceivedReferralInput>
+}
+
+export type UserUpdateOneRequiredWithoutSentReferralsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSentReferralsInput, Prisma.UserUncheckedCreateWithoutSentReferralsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSentReferralsInput
+  upsert?: Prisma.UserUpsertWithoutSentReferralsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSentReferralsInput, Prisma.UserUpdateWithoutSentReferralsInput>, Prisma.UserUncheckedUpdateWithoutSentReferralsInput>
 }
 
 export type UserCreateNestedOneWithoutWalletInput = {
@@ -863,52 +863,52 @@ export type UserUpdateOneRequiredWithoutSessionsNestedInput = {
 }
 
 export type UserCreateWithoutReferralsInput = {
-  firstName: string
-  lastName: string
   email: string
   passwordHash: string
   phone?: string | null
   gender?: $Enums.Gender | null
   avatar?: string | null
-  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: string | null
   isVerified?: boolean
   isActive?: boolean
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
-  twoFactorEnabled?: boolean
   updatedAt?: Date | string
+  twoFactorEnabled?: boolean
+  firstName: string
+  lastName: string
+  referralCode?: string | null
+  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralCreateNestedOneWithoutReferredUserInput
+  sentReferrals?: Prisma.ReferralCreateNestedManyWithoutReferrerInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
   referredBy?: Prisma.UserCreateNestedOneWithoutReferralsInput
   wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
-  sentReferrals?: Prisma.ReferralCreateNestedManyWithoutReferrerInput
-  receivedReferral?: Prisma.ReferralCreateNestedOneWithoutReferredUserInput
 }
 
 export type UserUncheckedCreateWithoutReferralsInput = {
   id?: number
-  firstName: string
-  lastName: string
   email: string
   passwordHash: string
   phone?: string | null
   gender?: $Enums.Gender | null
   avatar?: string | null
-  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: string | null
-  referredByUserId?: number | null
   isVerified?: boolean
   isActive?: boolean
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
-  twoFactorEnabled?: boolean
   updatedAt?: Date | string
+  twoFactorEnabled?: boolean
+  firstName: string
+  lastName: string
+  referralCode?: string | null
+  referredByUserId?: number | null
+  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralUncheckedCreateNestedOneWithoutReferredUserInput
+  sentReferrals?: Prisma.ReferralUncheckedCreateNestedManyWithoutReferrerInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
   wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
-  sentReferrals?: Prisma.ReferralUncheckedCreateNestedManyWithoutReferrerInput
-  receivedReferral?: Prisma.ReferralUncheckedCreateNestedOneWithoutReferredUserInput
 }
 
 export type UserCreateOrConnectWithoutReferralsInput = {
@@ -917,52 +917,52 @@ export type UserCreateOrConnectWithoutReferralsInput = {
 }
 
 export type UserCreateWithoutReferredByInput = {
-  firstName: string
-  lastName: string
   email: string
   passwordHash: string
   phone?: string | null
   gender?: $Enums.Gender | null
   avatar?: string | null
-  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: string | null
   isVerified?: boolean
   isActive?: boolean
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
-  twoFactorEnabled?: boolean
   updatedAt?: Date | string
+  twoFactorEnabled?: boolean
+  firstName: string
+  lastName: string
+  referralCode?: string | null
+  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralCreateNestedOneWithoutReferredUserInput
+  sentReferrals?: Prisma.ReferralCreateNestedManyWithoutReferrerInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
   referrals?: Prisma.UserCreateNestedManyWithoutReferredByInput
   wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
-  sentReferrals?: Prisma.ReferralCreateNestedManyWithoutReferrerInput
-  receivedReferral?: Prisma.ReferralCreateNestedOneWithoutReferredUserInput
 }
 
 export type UserUncheckedCreateWithoutReferredByInput = {
   id?: number
-  firstName: string
-  lastName: string
   email: string
   passwordHash: string
   phone?: string | null
   gender?: $Enums.Gender | null
   avatar?: string | null
-  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: string | null
   isVerified?: boolean
   isActive?: boolean
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
-  twoFactorEnabled?: boolean
   updatedAt?: Date | string
+  twoFactorEnabled?: boolean
+  firstName: string
+  lastName: string
+  referralCode?: string | null
+  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralUncheckedCreateNestedOneWithoutReferredUserInput
+  sentReferrals?: Prisma.ReferralUncheckedCreateNestedManyWithoutReferrerInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
   referrals?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByInput
   wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
-  sentReferrals?: Prisma.ReferralUncheckedCreateNestedManyWithoutReferrerInput
-  receivedReferral?: Prisma.ReferralUncheckedCreateNestedOneWithoutReferredUserInput
 }
 
 export type UserCreateOrConnectWithoutReferredByInput = {
@@ -987,52 +987,52 @@ export type UserUpdateToOneWithWhereWithoutReferralsInput = {
 }
 
 export type UserUpdateWithoutReferralsInput = {
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralUpdateOneWithoutReferredUserNestedInput
+  sentReferrals?: Prisma.ReferralUpdateManyWithoutReferrerNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
   referredBy?: Prisma.UserUpdateOneWithoutReferralsNestedInput
   wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
-  sentReferrals?: Prisma.ReferralUpdateManyWithoutReferrerNestedInput
-  receivedReferral?: Prisma.ReferralUpdateOneWithoutReferredUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReferralsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referredByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralUncheckedUpdateOneWithoutReferredUserNestedInput
+  sentReferrals?: Prisma.ReferralUncheckedUpdateManyWithoutReferrerNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
   wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
-  sentReferrals?: Prisma.ReferralUncheckedUpdateManyWithoutReferrerNestedInput
-  receivedReferral?: Prisma.ReferralUncheckedUpdateOneWithoutReferredUserNestedInput
 }
 
 export type UserUpsertWithWhereUniqueWithoutReferredByInput = {
@@ -1056,125 +1056,71 @@ export type UserScalarWhereInput = {
   OR?: Prisma.UserScalarWhereInput[]
   NOT?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
   id?: Prisma.IntFilter<"User"> | number
-  firstName?: Prisma.StringFilter<"User"> | string
-  lastName?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
   passwordHash?: Prisma.StringFilter<"User"> | string
   phone?: Prisma.StringNullableFilter<"User"> | string | null
   gender?: Prisma.EnumGenderNullableFilter<"User"> | $Enums.Gender | null
   avatar?: Prisma.StringNullableFilter<"User"> | string | null
-  totalSpent?: Prisma.DecimalFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: Prisma.StringNullableFilter<"User"> | string | null
-  referredByUserId?: Prisma.IntNullableFilter<"User"> | number | null
   isVerified?: Prisma.BoolFilter<"User"> | boolean
   isActive?: Prisma.BoolFilter<"User"> | boolean
   lastLoginAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  twoFactorEnabled?: Prisma.BoolFilter<"User"> | boolean
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-}
-
-export type UserCreateWithoutSentReferralsInput = {
-  firstName: string
-  lastName: string
-  email: string
-  passwordHash: string
-  phone?: string | null
-  gender?: $Enums.Gender | null
-  avatar?: string | null
-  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: string | null
-  isVerified?: boolean
-  isActive?: boolean
-  lastLoginAt?: Date | string | null
-  createdAt?: Date | string
-  twoFactorEnabled?: boolean
-  updatedAt?: Date | string
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
-  referredBy?: Prisma.UserCreateNestedOneWithoutReferralsInput
-  referrals?: Prisma.UserCreateNestedManyWithoutReferredByInput
-  wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
-  receivedReferral?: Prisma.ReferralCreateNestedOneWithoutReferredUserInput
-}
-
-export type UserUncheckedCreateWithoutSentReferralsInput = {
-  id?: number
-  firstName: string
-  lastName: string
-  email: string
-  passwordHash: string
-  phone?: string | null
-  gender?: $Enums.Gender | null
-  avatar?: string | null
-  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: string | null
-  referredByUserId?: number | null
-  isVerified?: boolean
-  isActive?: boolean
-  lastLoginAt?: Date | string | null
-  createdAt?: Date | string
-  twoFactorEnabled?: boolean
-  updatedAt?: Date | string
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
-  referrals?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByInput
-  wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
-  receivedReferral?: Prisma.ReferralUncheckedCreateNestedOneWithoutReferredUserInput
-}
-
-export type UserCreateOrConnectWithoutSentReferralsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutSentReferralsInput, Prisma.UserUncheckedCreateWithoutSentReferralsInput>
+  twoFactorEnabled?: Prisma.BoolFilter<"User"> | boolean
+  firstName?: Prisma.StringFilter<"User"> | string
+  lastName?: Prisma.StringFilter<"User"> | string
+  referralCode?: Prisma.StringNullableFilter<"User"> | string | null
+  referredByUserId?: Prisma.IntNullableFilter<"User"> | number | null
+  totalSpent?: Prisma.DecimalFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type UserCreateWithoutReceivedReferralInput = {
-  firstName: string
-  lastName: string
   email: string
   passwordHash: string
   phone?: string | null
   gender?: $Enums.Gender | null
   avatar?: string | null
-  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: string | null
   isVerified?: boolean
   isActive?: boolean
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
-  twoFactorEnabled?: boolean
   updatedAt?: Date | string
+  twoFactorEnabled?: boolean
+  firstName: string
+  lastName: string
+  referralCode?: string | null
+  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sentReferrals?: Prisma.ReferralCreateNestedManyWithoutReferrerInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
   referredBy?: Prisma.UserCreateNestedOneWithoutReferralsInput
   referrals?: Prisma.UserCreateNestedManyWithoutReferredByInput
   wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
-  sentReferrals?: Prisma.ReferralCreateNestedManyWithoutReferrerInput
 }
 
 export type UserUncheckedCreateWithoutReceivedReferralInput = {
   id?: number
-  firstName: string
-  lastName: string
   email: string
   passwordHash: string
   phone?: string | null
   gender?: $Enums.Gender | null
   avatar?: string | null
-  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: string | null
-  referredByUserId?: number | null
   isVerified?: boolean
   isActive?: boolean
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
-  twoFactorEnabled?: boolean
   updatedAt?: Date | string
+  twoFactorEnabled?: boolean
+  firstName: string
+  lastName: string
+  referralCode?: string | null
+  referredByUserId?: number | null
+  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sentReferrals?: Prisma.ReferralUncheckedCreateNestedManyWithoutReferrerInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
   referrals?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByInput
   wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
-  sentReferrals?: Prisma.ReferralUncheckedCreateNestedManyWithoutReferrerInput
 }
 
 export type UserCreateOrConnectWithoutReceivedReferralInput = {
@@ -1182,64 +1128,58 @@ export type UserCreateOrConnectWithoutReceivedReferralInput = {
   create: Prisma.XOR<Prisma.UserCreateWithoutReceivedReferralInput, Prisma.UserUncheckedCreateWithoutReceivedReferralInput>
 }
 
-export type UserUpsertWithoutSentReferralsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutSentReferralsInput, Prisma.UserUncheckedUpdateWithoutSentReferralsInput>
+export type UserCreateWithoutSentReferralsInput = {
+  email: string
+  passwordHash: string
+  phone?: string | null
+  gender?: $Enums.Gender | null
+  avatar?: string | null
+  isVerified?: boolean
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  twoFactorEnabled?: boolean
+  firstName: string
+  lastName: string
+  referralCode?: string | null
+  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralCreateNestedOneWithoutReferredUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
+  referredBy?: Prisma.UserCreateNestedOneWithoutReferralsInput
+  referrals?: Prisma.UserCreateNestedManyWithoutReferredByInput
+  wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutSentReferralsInput = {
+  id?: number
+  email: string
+  passwordHash: string
+  phone?: string | null
+  gender?: $Enums.Gender | null
+  avatar?: string | null
+  isVerified?: boolean
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  twoFactorEnabled?: boolean
+  firstName: string
+  lastName: string
+  referralCode?: string | null
+  referredByUserId?: number | null
+  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralUncheckedCreateNestedOneWithoutReferredUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
+  referrals?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByInput
+  wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutSentReferralsInput = {
+  where: Prisma.UserWhereUniqueInput
   create: Prisma.XOR<Prisma.UserCreateWithoutSentReferralsInput, Prisma.UserUncheckedCreateWithoutSentReferralsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutSentReferralsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutSentReferralsInput, Prisma.UserUncheckedUpdateWithoutSentReferralsInput>
-}
-
-export type UserUpdateWithoutSentReferralsInput = {
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
-  referredBy?: Prisma.UserUpdateOneWithoutReferralsNestedInput
-  referrals?: Prisma.UserUpdateManyWithoutReferredByNestedInput
-  wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
-  receivedReferral?: Prisma.ReferralUpdateOneWithoutReferredUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutSentReferralsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
-  referrals?: Prisma.UserUncheckedUpdateManyWithoutReferredByNestedInput
-  wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
-  receivedReferral?: Prisma.ReferralUncheckedUpdateOneWithoutReferredUserNestedInput
 }
 
 export type UserUpsertWithoutReceivedReferralInput = {
@@ -1254,101 +1194,161 @@ export type UserUpdateToOneWithWhereWithoutReceivedReferralInput = {
 }
 
 export type UserUpdateWithoutReceivedReferralInput = {
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sentReferrals?: Prisma.ReferralUpdateManyWithoutReferrerNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
   referredBy?: Prisma.UserUpdateOneWithoutReferralsNestedInput
   referrals?: Prisma.UserUpdateManyWithoutReferredByNestedInput
   wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
-  sentReferrals?: Prisma.ReferralUpdateManyWithoutReferrerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReceivedReferralInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referredByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sentReferrals?: Prisma.ReferralUncheckedUpdateManyWithoutReferrerNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
   referrals?: Prisma.UserUncheckedUpdateManyWithoutReferredByNestedInput
   wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
-  sentReferrals?: Prisma.ReferralUncheckedUpdateManyWithoutReferrerNestedInput
+}
+
+export type UserUpsertWithoutSentReferralsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSentReferralsInput, Prisma.UserUncheckedUpdateWithoutSentReferralsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSentReferralsInput, Prisma.UserUncheckedCreateWithoutSentReferralsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSentReferralsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSentReferralsInput, Prisma.UserUncheckedUpdateWithoutSentReferralsInput>
+}
+
+export type UserUpdateWithoutSentReferralsInput = {
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralUpdateOneWithoutReferredUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
+  referredBy?: Prisma.UserUpdateOneWithoutReferralsNestedInput
+  referrals?: Prisma.UserUpdateManyWithoutReferredByNestedInput
+  wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSentReferralsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referredByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralUncheckedUpdateOneWithoutReferredUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
+  referrals?: Prisma.UserUncheckedUpdateManyWithoutReferredByNestedInput
+  wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutWalletInput = {
-  firstName: string
-  lastName: string
   email: string
   passwordHash: string
   phone?: string | null
   gender?: $Enums.Gender | null
   avatar?: string | null
-  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: string | null
   isVerified?: boolean
   isActive?: boolean
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
-  twoFactorEnabled?: boolean
   updatedAt?: Date | string
+  twoFactorEnabled?: boolean
+  firstName: string
+  lastName: string
+  referralCode?: string | null
+  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralCreateNestedOneWithoutReferredUserInput
+  sentReferrals?: Prisma.ReferralCreateNestedManyWithoutReferrerInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
   referredBy?: Prisma.UserCreateNestedOneWithoutReferralsInput
   referrals?: Prisma.UserCreateNestedManyWithoutReferredByInput
-  sentReferrals?: Prisma.ReferralCreateNestedManyWithoutReferrerInput
-  receivedReferral?: Prisma.ReferralCreateNestedOneWithoutReferredUserInput
 }
 
 export type UserUncheckedCreateWithoutWalletInput = {
   id?: number
-  firstName: string
-  lastName: string
   email: string
   passwordHash: string
   phone?: string | null
   gender?: $Enums.Gender | null
   avatar?: string | null
-  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: string | null
-  referredByUserId?: number | null
   isVerified?: boolean
   isActive?: boolean
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
-  twoFactorEnabled?: boolean
   updatedAt?: Date | string
+  twoFactorEnabled?: boolean
+  firstName: string
+  lastName: string
+  referralCode?: string | null
+  referredByUserId?: number | null
+  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralUncheckedCreateNestedOneWithoutReferredUserInput
+  sentReferrals?: Prisma.ReferralUncheckedCreateNestedManyWithoutReferrerInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
   referrals?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByInput
-  sentReferrals?: Prisma.ReferralUncheckedCreateNestedManyWithoutReferrerInput
-  receivedReferral?: Prisma.ReferralUncheckedCreateNestedOneWithoutReferredUserInput
 }
 
 export type UserCreateOrConnectWithoutWalletInput = {
@@ -1368,101 +1368,101 @@ export type UserUpdateToOneWithWhereWithoutWalletInput = {
 }
 
 export type UserUpdateWithoutWalletInput = {
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralUpdateOneWithoutReferredUserNestedInput
+  sentReferrals?: Prisma.ReferralUpdateManyWithoutReferrerNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
   referredBy?: Prisma.UserUpdateOneWithoutReferralsNestedInput
   referrals?: Prisma.UserUpdateManyWithoutReferredByNestedInput
-  sentReferrals?: Prisma.ReferralUpdateManyWithoutReferrerNestedInput
-  receivedReferral?: Prisma.ReferralUpdateOneWithoutReferredUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWalletInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referredByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralUncheckedUpdateOneWithoutReferredUserNestedInput
+  sentReferrals?: Prisma.ReferralUncheckedUpdateManyWithoutReferrerNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
   referrals?: Prisma.UserUncheckedUpdateManyWithoutReferredByNestedInput
-  sentReferrals?: Prisma.ReferralUncheckedUpdateManyWithoutReferrerNestedInput
-  receivedReferral?: Prisma.ReferralUncheckedUpdateOneWithoutReferredUserNestedInput
 }
 
 export type UserCreateWithoutTransactionsInput = {
-  firstName: string
-  lastName: string
   email: string
   passwordHash: string
   phone?: string | null
   gender?: $Enums.Gender | null
   avatar?: string | null
-  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: string | null
   isVerified?: boolean
   isActive?: boolean
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
-  twoFactorEnabled?: boolean
   updatedAt?: Date | string
+  twoFactorEnabled?: boolean
+  firstName: string
+  lastName: string
+  referralCode?: string | null
+  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralCreateNestedOneWithoutReferredUserInput
+  sentReferrals?: Prisma.ReferralCreateNestedManyWithoutReferrerInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   referredBy?: Prisma.UserCreateNestedOneWithoutReferralsInput
   referrals?: Prisma.UserCreateNestedManyWithoutReferredByInput
   wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
-  sentReferrals?: Prisma.ReferralCreateNestedManyWithoutReferrerInput
-  receivedReferral?: Prisma.ReferralCreateNestedOneWithoutReferredUserInput
 }
 
 export type UserUncheckedCreateWithoutTransactionsInput = {
   id?: number
-  firstName: string
-  lastName: string
   email: string
   passwordHash: string
   phone?: string | null
   gender?: $Enums.Gender | null
   avatar?: string | null
-  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: string | null
-  referredByUserId?: number | null
   isVerified?: boolean
   isActive?: boolean
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
-  twoFactorEnabled?: boolean
   updatedAt?: Date | string
+  twoFactorEnabled?: boolean
+  firstName: string
+  lastName: string
+  referralCode?: string | null
+  referredByUserId?: number | null
+  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralUncheckedCreateNestedOneWithoutReferredUserInput
+  sentReferrals?: Prisma.ReferralUncheckedCreateNestedManyWithoutReferrerInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   referrals?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByInput
   wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
-  sentReferrals?: Prisma.ReferralUncheckedCreateNestedManyWithoutReferrerInput
-  receivedReferral?: Prisma.ReferralUncheckedCreateNestedOneWithoutReferredUserInput
 }
 
 export type UserCreateOrConnectWithoutTransactionsInput = {
@@ -1482,101 +1482,101 @@ export type UserUpdateToOneWithWhereWithoutTransactionsInput = {
 }
 
 export type UserUpdateWithoutTransactionsInput = {
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralUpdateOneWithoutReferredUserNestedInput
+  sentReferrals?: Prisma.ReferralUpdateManyWithoutReferrerNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   referredBy?: Prisma.UserUpdateOneWithoutReferralsNestedInput
   referrals?: Prisma.UserUpdateManyWithoutReferredByNestedInput
   wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
-  sentReferrals?: Prisma.ReferralUpdateManyWithoutReferrerNestedInput
-  receivedReferral?: Prisma.ReferralUpdateOneWithoutReferredUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTransactionsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referredByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralUncheckedUpdateOneWithoutReferredUserNestedInput
+  sentReferrals?: Prisma.ReferralUncheckedUpdateManyWithoutReferrerNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   referrals?: Prisma.UserUncheckedUpdateManyWithoutReferredByNestedInput
   wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
-  sentReferrals?: Prisma.ReferralUncheckedUpdateManyWithoutReferrerNestedInput
-  receivedReferral?: Prisma.ReferralUncheckedUpdateOneWithoutReferredUserNestedInput
 }
 
 export type UserCreateWithoutSessionsInput = {
-  firstName: string
-  lastName: string
   email: string
   passwordHash: string
   phone?: string | null
   gender?: $Enums.Gender | null
   avatar?: string | null
-  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: string | null
   isVerified?: boolean
   isActive?: boolean
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
-  twoFactorEnabled?: boolean
   updatedAt?: Date | string
+  twoFactorEnabled?: boolean
+  firstName: string
+  lastName: string
+  referralCode?: string | null
+  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralCreateNestedOneWithoutReferredUserInput
+  sentReferrals?: Prisma.ReferralCreateNestedManyWithoutReferrerInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
   referredBy?: Prisma.UserCreateNestedOneWithoutReferralsInput
   referrals?: Prisma.UserCreateNestedManyWithoutReferredByInput
   wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
-  sentReferrals?: Prisma.ReferralCreateNestedManyWithoutReferrerInput
-  receivedReferral?: Prisma.ReferralCreateNestedOneWithoutReferredUserInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
   id?: number
-  firstName: string
-  lastName: string
   email: string
   passwordHash: string
   phone?: string | null
   gender?: $Enums.Gender | null
   avatar?: string | null
-  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: string | null
-  referredByUserId?: number | null
   isVerified?: boolean
   isActive?: boolean
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
-  twoFactorEnabled?: boolean
   updatedAt?: Date | string
+  twoFactorEnabled?: boolean
+  firstName: string
+  lastName: string
+  referralCode?: string | null
+  referredByUserId?: number | null
+  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralUncheckedCreateNestedOneWithoutReferredUserInput
+  sentReferrals?: Prisma.ReferralUncheckedCreateNestedManyWithoutReferrerInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
   referrals?: Prisma.UserUncheckedCreateNestedManyWithoutReferredByInput
   wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
-  sentReferrals?: Prisma.ReferralUncheckedCreateNestedManyWithoutReferrerInput
-  receivedReferral?: Prisma.ReferralUncheckedCreateNestedOneWithoutReferredUserInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -1596,139 +1596,139 @@ export type UserUpdateToOneWithWhereWithoutSessionsInput = {
 }
 
 export type UserUpdateWithoutSessionsInput = {
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralUpdateOneWithoutReferredUserNestedInput
+  sentReferrals?: Prisma.ReferralUpdateManyWithoutReferrerNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
   referredBy?: Prisma.UserUpdateOneWithoutReferralsNestedInput
   referrals?: Prisma.UserUpdateManyWithoutReferredByNestedInput
   wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
-  sentReferrals?: Prisma.ReferralUpdateManyWithoutReferrerNestedInput
-  receivedReferral?: Prisma.ReferralUpdateOneWithoutReferredUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referredByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referredByUserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralUncheckedUpdateOneWithoutReferredUserNestedInput
+  sentReferrals?: Prisma.ReferralUncheckedUpdateManyWithoutReferrerNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
   referrals?: Prisma.UserUncheckedUpdateManyWithoutReferredByNestedInput
   wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
-  sentReferrals?: Prisma.ReferralUncheckedUpdateManyWithoutReferrerNestedInput
-  receivedReferral?: Prisma.ReferralUncheckedUpdateOneWithoutReferredUserNestedInput
 }
 
 export type UserCreateManyReferredByInput = {
   id?: number
-  firstName: string
-  lastName: string
   email: string
   passwordHash: string
   phone?: string | null
   gender?: $Enums.Gender | null
   avatar?: string | null
-  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: string | null
   isVerified?: boolean
   isActive?: boolean
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
-  twoFactorEnabled?: boolean
   updatedAt?: Date | string
+  twoFactorEnabled?: boolean
+  firstName: string
+  lastName: string
+  referralCode?: string | null
+  totalSpent?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type UserUpdateWithoutReferredByInput = {
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralUpdateOneWithoutReferredUserNestedInput
+  sentReferrals?: Prisma.ReferralUpdateManyWithoutReferrerNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
   referrals?: Prisma.UserUpdateManyWithoutReferredByNestedInput
   wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
-  sentReferrals?: Prisma.ReferralUpdateManyWithoutReferrerNestedInput
-  receivedReferral?: Prisma.ReferralUpdateOneWithoutReferredUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReferredByInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  receivedReferral?: Prisma.ReferralUncheckedUpdateOneWithoutReferredUserNestedInput
+  sentReferrals?: Prisma.ReferralUncheckedUpdateManyWithoutReferrerNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
   referrals?: Prisma.UserUncheckedUpdateManyWithoutReferredByNestedInput
   wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
-  sentReferrals?: Prisma.ReferralUncheckedUpdateManyWithoutReferrerNestedInput
-  receivedReferral?: Prisma.ReferralUncheckedUpdateOneWithoutReferredUserNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutReferredByInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  totalSpent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 
@@ -1737,17 +1737,17 @@ export type UserUncheckedUpdateManyWithoutReferredByInput = {
  */
 
 export type UserCountOutputType = {
+  sentReferrals: number
   sessions: number
   transactions: number
   referrals: number
-  sentReferrals: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  sentReferrals?: boolean | UserCountOutputTypeCountSentReferralsArgs
   sessions?: boolean | UserCountOutputTypeCountSessionsArgs
   transactions?: boolean | UserCountOutputTypeCountTransactionsArgs
   referrals?: boolean | UserCountOutputTypeCountReferralsArgs
-  sentReferrals?: boolean | UserCountOutputTypeCountSentReferralsArgs
 }
 
 /**
@@ -1758,6 +1758,13 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
    * Select specific fields to fetch from the UserCountOutputType
    */
   select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSentReferralsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReferralWhereInput
 }
 
 /**
@@ -1781,113 +1788,106 @@ export type UserCountOutputTypeCountReferralsArgs<ExtArgs extends runtime.Types.
   where?: Prisma.UserWhereInput
 }
 
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountSentReferralsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ReferralWhereInput
-}
-
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  firstName?: boolean
-  lastName?: boolean
   email?: boolean
   passwordHash?: boolean
   phone?: boolean
   gender?: boolean
   avatar?: boolean
-  totalSpent?: boolean
-  referralCode?: boolean
-  referredByUserId?: boolean
   isVerified?: boolean
   isActive?: boolean
   lastLoginAt?: boolean
   createdAt?: boolean
-  twoFactorEnabled?: boolean
   updatedAt?: boolean
+  twoFactorEnabled?: boolean
+  firstName?: boolean
+  lastName?: boolean
+  referralCode?: boolean
+  referredByUserId?: boolean
+  totalSpent?: boolean
+  receivedReferral?: boolean | Prisma.User$receivedReferralArgs<ExtArgs>
+  sentReferrals?: boolean | Prisma.User$sentReferralsArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   transactions?: boolean | Prisma.User$transactionsArgs<ExtArgs>
   referredBy?: boolean | Prisma.User$referredByArgs<ExtArgs>
   referrals?: boolean | Prisma.User$referralsArgs<ExtArgs>
   wallet?: boolean | Prisma.User$walletArgs<ExtArgs>
-  sentReferrals?: boolean | Prisma.User$sentReferralsArgs<ExtArgs>
-  receivedReferral?: boolean | Prisma.User$receivedReferralArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  firstName?: boolean
-  lastName?: boolean
   email?: boolean
   passwordHash?: boolean
   phone?: boolean
   gender?: boolean
   avatar?: boolean
-  totalSpent?: boolean
-  referralCode?: boolean
-  referredByUserId?: boolean
   isVerified?: boolean
   isActive?: boolean
   lastLoginAt?: boolean
   createdAt?: boolean
-  twoFactorEnabled?: boolean
   updatedAt?: boolean
+  twoFactorEnabled?: boolean
+  firstName?: boolean
+  lastName?: boolean
+  referralCode?: boolean
+  referredByUserId?: boolean
+  totalSpent?: boolean
   referredBy?: boolean | Prisma.User$referredByArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  firstName?: boolean
-  lastName?: boolean
   email?: boolean
   passwordHash?: boolean
   phone?: boolean
   gender?: boolean
   avatar?: boolean
-  totalSpent?: boolean
-  referralCode?: boolean
-  referredByUserId?: boolean
   isVerified?: boolean
   isActive?: boolean
   lastLoginAt?: boolean
   createdAt?: boolean
-  twoFactorEnabled?: boolean
   updatedAt?: boolean
+  twoFactorEnabled?: boolean
+  firstName?: boolean
+  lastName?: boolean
+  referralCode?: boolean
+  referredByUserId?: boolean
+  totalSpent?: boolean
   referredBy?: boolean | Prisma.User$referredByArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
   id?: boolean
-  firstName?: boolean
-  lastName?: boolean
   email?: boolean
   passwordHash?: boolean
   phone?: boolean
   gender?: boolean
   avatar?: boolean
-  totalSpent?: boolean
-  referralCode?: boolean
-  referredByUserId?: boolean
   isVerified?: boolean
   isActive?: boolean
   lastLoginAt?: boolean
   createdAt?: boolean
-  twoFactorEnabled?: boolean
   updatedAt?: boolean
+  twoFactorEnabled?: boolean
+  firstName?: boolean
+  lastName?: boolean
+  referralCode?: boolean
+  referredByUserId?: boolean
+  totalSpent?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "lastName" | "email" | "passwordHash" | "phone" | "gender" | "avatar" | "totalSpent" | "referralCode" | "referredByUserId" | "isVerified" | "isActive" | "lastLoginAt" | "createdAt" | "twoFactorEnabled" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "passwordHash" | "phone" | "gender" | "avatar" | "isVerified" | "isActive" | "lastLoginAt" | "createdAt" | "updatedAt" | "twoFactorEnabled" | "firstName" | "lastName" | "referralCode" | "referredByUserId" | "totalSpent", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  receivedReferral?: boolean | Prisma.User$receivedReferralArgs<ExtArgs>
+  sentReferrals?: boolean | Prisma.User$sentReferralsArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   transactions?: boolean | Prisma.User$transactionsArgs<ExtArgs>
   referredBy?: boolean | Prisma.User$referredByArgs<ExtArgs>
   referrals?: boolean | Prisma.User$referralsArgs<ExtArgs>
   wallet?: boolean | Prisma.User$walletArgs<ExtArgs>
-  sentReferrals?: boolean | Prisma.User$sentReferralsArgs<ExtArgs>
-  receivedReferral?: boolean | Prisma.User$receivedReferralArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1900,32 +1900,32 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
+    receivedReferral: Prisma.$ReferralPayload<ExtArgs> | null
+    sentReferrals: Prisma.$ReferralPayload<ExtArgs>[]
     sessions: Prisma.$SessionPayload<ExtArgs>[]
     transactions: Prisma.$TransactionPayload<ExtArgs>[]
     referredBy: Prisma.$UserPayload<ExtArgs> | null
     referrals: Prisma.$UserPayload<ExtArgs>[]
     wallet: Prisma.$WalletPayload<ExtArgs> | null
-    sentReferrals: Prisma.$ReferralPayload<ExtArgs>[]
-    receivedReferral: Prisma.$ReferralPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    firstName: string
-    lastName: string
     email: string
     passwordHash: string
     phone: string | null
     gender: $Enums.Gender | null
     avatar: string | null
-    totalSpent: runtime.Decimal
-    referralCode: string | null
-    referredByUserId: number | null
     isVerified: boolean
     isActive: boolean
     lastLoginAt: Date | null
     createdAt: Date
-    twoFactorEnabled: boolean
     updatedAt: Date
+    twoFactorEnabled: boolean
+    firstName: string
+    lastName: string
+    referralCode: string | null
+    referredByUserId: number | null
+    totalSpent: runtime.Decimal
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -2320,13 +2320,13 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  receivedReferral<T extends Prisma.User$receivedReferralArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$receivedReferralArgs<ExtArgs>>): Prisma.Prisma__ReferralClient<runtime.Types.Result.GetResult<Prisma.$ReferralPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  sentReferrals<T extends Prisma.User$sentReferralsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sentReferralsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReferralPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   transactions<T extends Prisma.User$transactionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$transactionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   referredBy<T extends Prisma.User$referredByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$referredByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   referrals<T extends Prisma.User$referralsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$referralsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   wallet<T extends Prisma.User$walletArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$walletArgs<ExtArgs>>): Prisma.Prisma__WalletClient<runtime.Types.Result.GetResult<Prisma.$WalletPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  sentReferrals<T extends Prisma.User$sentReferralsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sentReferralsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReferralPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  receivedReferral<T extends Prisma.User$receivedReferralArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$receivedReferralArgs<ExtArgs>>): Prisma.Prisma__ReferralClient<runtime.Types.Result.GetResult<Prisma.$ReferralPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2357,22 +2357,22 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
  */
 export interface UserFieldRefs {
   readonly id: Prisma.FieldRef<"User", 'Int'>
-  readonly firstName: Prisma.FieldRef<"User", 'String'>
-  readonly lastName: Prisma.FieldRef<"User", 'String'>
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly passwordHash: Prisma.FieldRef<"User", 'String'>
   readonly phone: Prisma.FieldRef<"User", 'String'>
   readonly gender: Prisma.FieldRef<"User", 'Gender'>
   readonly avatar: Prisma.FieldRef<"User", 'String'>
-  readonly totalSpent: Prisma.FieldRef<"User", 'Decimal'>
-  readonly referralCode: Prisma.FieldRef<"User", 'String'>
-  readonly referredByUserId: Prisma.FieldRef<"User", 'Int'>
   readonly isVerified: Prisma.FieldRef<"User", 'Boolean'>
   readonly isActive: Prisma.FieldRef<"User", 'Boolean'>
   readonly lastLoginAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
-  readonly twoFactorEnabled: Prisma.FieldRef<"User", 'Boolean'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly twoFactorEnabled: Prisma.FieldRef<"User", 'Boolean'>
+  readonly firstName: Prisma.FieldRef<"User", 'String'>
+  readonly lastName: Prisma.FieldRef<"User", 'String'>
+  readonly referralCode: Prisma.FieldRef<"User", 'String'>
+  readonly referredByUserId: Prisma.FieldRef<"User", 'Int'>
+  readonly totalSpent: Prisma.FieldRef<"User", 'Decimal'>
 }
     
 
@@ -2774,6 +2774,49 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
+ * User.receivedReferral
+ */
+export type User$receivedReferralArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Referral
+   */
+  select?: Prisma.ReferralSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Referral
+   */
+  omit?: Prisma.ReferralOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReferralInclude<ExtArgs> | null
+  where?: Prisma.ReferralWhereInput
+}
+
+/**
+ * User.sentReferrals
+ */
+export type User$sentReferralsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Referral
+   */
+  select?: Prisma.ReferralSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Referral
+   */
+  omit?: Prisma.ReferralOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReferralInclude<ExtArgs> | null
+  where?: Prisma.ReferralWhereInput
+  orderBy?: Prisma.ReferralOrderByWithRelationInput | Prisma.ReferralOrderByWithRelationInput[]
+  cursor?: Prisma.ReferralWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReferralScalarFieldEnum | Prisma.ReferralScalarFieldEnum[]
+}
+
+/**
  * User.sessions
  */
 export type User$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2881,49 +2924,6 @@ export type User$walletArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    */
   include?: Prisma.WalletInclude<ExtArgs> | null
   where?: Prisma.WalletWhereInput
-}
-
-/**
- * User.sentReferrals
- */
-export type User$sentReferralsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Referral
-   */
-  select?: Prisma.ReferralSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Referral
-   */
-  omit?: Prisma.ReferralOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ReferralInclude<ExtArgs> | null
-  where?: Prisma.ReferralWhereInput
-  orderBy?: Prisma.ReferralOrderByWithRelationInput | Prisma.ReferralOrderByWithRelationInput[]
-  cursor?: Prisma.ReferralWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ReferralScalarFieldEnum | Prisma.ReferralScalarFieldEnum[]
-}
-
-/**
- * User.receivedReferral
- */
-export type User$receivedReferralArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Referral
-   */
-  select?: Prisma.ReferralSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Referral
-   */
-  omit?: Prisma.ReferralOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ReferralInclude<ExtArgs> | null
-  where?: Prisma.ReferralWhereInput
 }
 
 /**

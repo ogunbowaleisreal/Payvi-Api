@@ -24,4 +24,12 @@ router.patch(
     )
 );
 
+router.get(
+    "/profile",
+    ClientAuthMiddleware,
+    accountController.getUserProfile.bind(
+        accountController
+    )
+);
+
 export default router;

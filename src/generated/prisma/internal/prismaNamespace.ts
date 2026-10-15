@@ -1357,22 +1357,22 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const UserScalarFieldEnum = {
   id: 'id',
-  firstName: 'firstName',
-  lastName: 'lastName',
   email: 'email',
   passwordHash: 'passwordHash',
   phone: 'phone',
   gender: 'gender',
   avatar: 'avatar',
-  totalSpent: 'totalSpent',
-  referralCode: 'referralCode',
-  referredByUserId: 'referredByUserId',
   isVerified: 'isVerified',
   isActive: 'isActive',
   lastLoginAt: 'lastLoginAt',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   twoFactorEnabled: 'twoFactorEnabled',
-  updatedAt: 'updatedAt'
+  firstName: 'firstName',
+  lastName: 'lastName',
+  referralCode: 'referralCode',
+  referredByUserId: 'referredByUserId',
+  totalSpent: 'totalSpent'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -1398,9 +1398,9 @@ export const WalletScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   balance: 'balance',
-  transactionPinHash: 'transactionPinHash',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  transactionPinHash: 'transactionPinHash'
 } as const
 
 export type WalletScalarFieldEnum = (typeof WalletScalarFieldEnum)[keyof typeof WalletScalarFieldEnum]
@@ -1433,9 +1433,9 @@ export const TransactionScalarFieldEnum = {
   providerReference: 'providerReference',
   phoneNumber: 'phoneNumber',
   metadata: 'metadata',
-  providerRequestId: 'providerRequestId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  providerRequestId: 'providerRequestId'
 } as const
 
 export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum]
@@ -1455,21 +1455,21 @@ export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeo
 
 export const AdminScalarFieldEnum = {
   id: 'id',
-  firstName: 'firstName',
-  lastName: 'lastName',
   email: 'email',
   passwordHash: 'passwordHash',
-  phone: 'phone',
-  gender: 'gender',
-  avatar: 'avatar',
-  jobTitle: 'jobTitle',
-  department: 'department',
   roleId: 'roleId',
   isSuperAdmin: 'isSuperAdmin',
   isActive: 'isActive',
   lastLoginAt: 'lastLoginAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  avatar: 'avatar',
+  department: 'department',
+  gender: 'gender',
+  jobTitle: 'jobTitle',
+  phone: 'phone',
+  firstName: 'firstName',
+  lastName: 'lastName'
 } as const
 
 export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
@@ -1624,20 +1624,6 @@ export type ListEnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$Prism
 
 
 /**
- * Reference to a field of type 'Decimal'
- */
-export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
-    
-
-
-/**
- * Reference to a field of type 'Decimal[]'
- */
-export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
-    
-
-
-/**
  * Reference to a field of type 'Boolean'
  */
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
@@ -1655,6 +1641,20 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal'
+ */
+export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal[]'
+ */
+export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
     
 
 

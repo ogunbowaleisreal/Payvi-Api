@@ -56,5 +56,8 @@ router.post(
         userController
     )
 );
-
+router.post(
+    "/logout",
+    userController.logout.bind(userController)
+)
 export default router;

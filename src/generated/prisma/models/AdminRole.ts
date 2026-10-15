@@ -216,8 +216,8 @@ export type AdminRoleWhereInput = {
   description?: Prisma.StringNullableFilter<"AdminRole"> | string | null
   createdAt?: Prisma.DateTimeFilter<"AdminRole"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AdminRole"> | Date | string
-  admins?: Prisma.AdminListRelationFilter
   permissions?: Prisma.AdminRolePermissionListRelationFilter
+  admins?: Prisma.AdminListRelationFilter
 }
 
 export type AdminRoleOrderByWithRelationInput = {
@@ -226,8 +226,8 @@ export type AdminRoleOrderByWithRelationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  admins?: Prisma.AdminOrderByRelationAggregateInput
   permissions?: Prisma.AdminRolePermissionOrderByRelationAggregateInput
+  admins?: Prisma.AdminOrderByRelationAggregateInput
 }
 
 export type AdminRoleWhereUniqueInput = Prisma.AtLeast<{
@@ -239,8 +239,8 @@ export type AdminRoleWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringNullableFilter<"AdminRole"> | string | null
   createdAt?: Prisma.DateTimeFilter<"AdminRole"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AdminRole"> | Date | string
-  admins?: Prisma.AdminListRelationFilter
   permissions?: Prisma.AdminRolePermissionListRelationFilter
+  admins?: Prisma.AdminListRelationFilter
 }, "id" | "name">
 
 export type AdminRoleOrderByWithAggregationInput = {
@@ -272,8 +272,8 @@ export type AdminRoleCreateInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  admins?: Prisma.AdminCreateNestedManyWithoutRoleInput
   permissions?: Prisma.AdminRolePermissionCreateNestedManyWithoutRoleInput
+  admins?: Prisma.AdminCreateNestedManyWithoutRoleInput
 }
 
 export type AdminRoleUncheckedCreateInput = {
@@ -282,8 +282,8 @@ export type AdminRoleUncheckedCreateInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  admins?: Prisma.AdminUncheckedCreateNestedManyWithoutRoleInput
   permissions?: Prisma.AdminRolePermissionUncheckedCreateNestedManyWithoutRoleInput
+  admins?: Prisma.AdminUncheckedCreateNestedManyWithoutRoleInput
 }
 
 export type AdminRoleUpdateInput = {
@@ -291,8 +291,8 @@ export type AdminRoleUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admins?: Prisma.AdminUpdateManyWithoutRoleNestedInput
   permissions?: Prisma.AdminRolePermissionUpdateManyWithoutRoleNestedInput
+  admins?: Prisma.AdminUpdateManyWithoutRoleNestedInput
 }
 
 export type AdminRoleUncheckedUpdateInput = {
@@ -301,8 +301,8 @@ export type AdminRoleUncheckedUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  admins?: Prisma.AdminUncheckedUpdateManyWithoutRoleNestedInput
   permissions?: Prisma.AdminRolePermissionUncheckedUpdateManyWithoutRoleNestedInput
+  admins?: Prisma.AdminUncheckedUpdateManyWithoutRoleNestedInput
 }
 
 export type AdminRoleCreateManyInput = {
@@ -506,13 +506,13 @@ export type AdminRoleUncheckedUpdateWithoutPermissionsInput = {
  */
 
 export type AdminRoleCountOutputType = {
-  admins: number
   permissions: number
+  admins: number
 }
 
 export type AdminRoleCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  admins?: boolean | AdminRoleCountOutputTypeCountAdminsArgs
   permissions?: boolean | AdminRoleCountOutputTypeCountPermissionsArgs
+  admins?: boolean | AdminRoleCountOutputTypeCountAdminsArgs
 }
 
 /**
@@ -528,15 +528,15 @@ export type AdminRoleCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ex
 /**
  * AdminRoleCountOutputType without action
  */
-export type AdminRoleCountOutputTypeCountAdminsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AdminWhereInput
+export type AdminRoleCountOutputTypeCountPermissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AdminRolePermissionWhereInput
 }
 
 /**
  * AdminRoleCountOutputType without action
  */
-export type AdminRoleCountOutputTypeCountPermissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AdminRolePermissionWhereInput
+export type AdminRoleCountOutputTypeCountAdminsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AdminWhereInput
 }
 
 
@@ -546,8 +546,8 @@ export type AdminRoleSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   description?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  admins?: boolean | Prisma.AdminRole$adminsArgs<ExtArgs>
   permissions?: boolean | Prisma.AdminRole$permissionsArgs<ExtArgs>
+  admins?: boolean | Prisma.AdminRole$adminsArgs<ExtArgs>
   _count?: boolean | Prisma.AdminRoleCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["adminRole"]>
 
@@ -577,8 +577,8 @@ export type AdminRoleSelectScalar = {
 
 export type AdminRoleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["adminRole"]>
 export type AdminRoleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  admins?: boolean | Prisma.AdminRole$adminsArgs<ExtArgs>
   permissions?: boolean | Prisma.AdminRole$permissionsArgs<ExtArgs>
+  admins?: boolean | Prisma.AdminRole$adminsArgs<ExtArgs>
   _count?: boolean | Prisma.AdminRoleCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AdminRoleIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -587,8 +587,8 @@ export type AdminRoleIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
 export type $AdminRolePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "AdminRole"
   objects: {
-    admins: Prisma.$AdminPayload<ExtArgs>[]
     permissions: Prisma.$AdminRolePermissionPayload<ExtArgs>[]
+    admins: Prisma.$AdminPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -990,8 +990,8 @@ readonly fields: AdminRoleFieldRefs;
  */
 export interface Prisma__AdminRoleClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  admins<T extends Prisma.AdminRole$adminsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AdminRole$adminsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   permissions<T extends Prisma.AdminRole$permissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AdminRole$permissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AdminRolePermissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  admins<T extends Prisma.AdminRole$adminsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AdminRole$adminsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1419,30 +1419,6 @@ export type AdminRoleDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
- * AdminRole.admins
- */
-export type AdminRole$adminsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Admin
-   */
-  select?: Prisma.AdminSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Admin
-   */
-  omit?: Prisma.AdminOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AdminInclude<ExtArgs> | null
-  where?: Prisma.AdminWhereInput
-  orderBy?: Prisma.AdminOrderByWithRelationInput | Prisma.AdminOrderByWithRelationInput[]
-  cursor?: Prisma.AdminWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.AdminScalarFieldEnum | Prisma.AdminScalarFieldEnum[]
-}
-
-/**
  * AdminRole.permissions
  */
 export type AdminRole$permissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1464,6 +1440,30 @@ export type AdminRole$permissionsArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.AdminRolePermissionScalarFieldEnum | Prisma.AdminRolePermissionScalarFieldEnum[]
+}
+
+/**
+ * AdminRole.admins
+ */
+export type AdminRole$adminsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Admin
+   */
+  select?: Prisma.AdminSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Admin
+   */
+  omit?: Prisma.AdminOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AdminInclude<ExtArgs> | null
+  where?: Prisma.AdminWhereInput
+  orderBy?: Prisma.AdminOrderByWithRelationInput | Prisma.AdminOrderByWithRelationInput[]
+  cursor?: Prisma.AdminWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AdminScalarFieldEnum | Prisma.AdminScalarFieldEnum[]
 }
 
 /**

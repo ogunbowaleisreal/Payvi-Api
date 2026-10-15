@@ -56,4 +56,21 @@ export class AirtimeController {
             "Airtime purchase processed successfully"
         );
     }
+
+    async requeryAirtimeTransaction(
+        req: ClientAuthenticatedRequest,
+        res: Response
+    ) {
+        const result =
+            await this.airtimeService
+                .requeryAirtimeTransaction(
+                    req.params.transactionId as string
+                );
+
+        return sendSuccess(
+            res,
+            result,
+            "Transaction status retrieved successfully"
+        );
+    }
 }

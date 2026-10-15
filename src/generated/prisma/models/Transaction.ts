@@ -46,9 +46,9 @@ export type TransactionMinAggregateOutputType = {
   provider: string | null
   providerReference: string | null
   phoneNumber: string | null
-  providerRequestId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  providerRequestId: string | null
 }
 
 export type TransactionMaxAggregateOutputType = {
@@ -61,9 +61,9 @@ export type TransactionMaxAggregateOutputType = {
   provider: string | null
   providerReference: string | null
   phoneNumber: string | null
-  providerRequestId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  providerRequestId: string | null
 }
 
 export type TransactionCountAggregateOutputType = {
@@ -77,9 +77,9 @@ export type TransactionCountAggregateOutputType = {
   providerReference: number
   phoneNumber: number
   metadata: number
-  providerRequestId: number
   createdAt: number
   updatedAt: number
+  providerRequestId: number
   _all: number
 }
 
@@ -104,9 +104,9 @@ export type TransactionMinAggregateInputType = {
   provider?: true
   providerReference?: true
   phoneNumber?: true
-  providerRequestId?: true
   createdAt?: true
   updatedAt?: true
+  providerRequestId?: true
 }
 
 export type TransactionMaxAggregateInputType = {
@@ -119,9 +119,9 @@ export type TransactionMaxAggregateInputType = {
   provider?: true
   providerReference?: true
   phoneNumber?: true
-  providerRequestId?: true
   createdAt?: true
   updatedAt?: true
+  providerRequestId?: true
 }
 
 export type TransactionCountAggregateInputType = {
@@ -135,9 +135,9 @@ export type TransactionCountAggregateInputType = {
   providerReference?: true
   phoneNumber?: true
   metadata?: true
-  providerRequestId?: true
   createdAt?: true
   updatedAt?: true
+  providerRequestId?: true
   _all?: true
 }
 
@@ -238,9 +238,9 @@ export type TransactionGroupByOutputType = {
   providerReference: string | null
   phoneNumber: string | null
   metadata: runtime.JsonValue | null
-  providerRequestId: string | null
   createdAt: Date
   updatedAt: Date
+  providerRequestId: string | null
   _count: TransactionCountAggregateOutputType | null
   _avg: TransactionAvgAggregateOutputType | null
   _sum: TransactionSumAggregateOutputType | null
@@ -277,9 +277,9 @@ export type TransactionWhereInput = {
   providerReference?: Prisma.StringNullableFilter<"Transaction"> | string | null
   phoneNumber?: Prisma.StringNullableFilter<"Transaction"> | string | null
   metadata?: Prisma.JsonNullableFilter<"Transaction">
-  providerRequestId?: Prisma.StringNullableFilter<"Transaction"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
+  providerRequestId?: Prisma.StringNullableFilter<"Transaction"> | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
@@ -294,9 +294,9 @@ export type TransactionOrderByWithRelationInput = {
   providerReference?: Prisma.SortOrderInput | Prisma.SortOrder
   phoneNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder
-  providerRequestId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  providerRequestId?: Prisma.SortOrderInput | Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
 }
 
@@ -314,9 +314,9 @@ export type TransactionWhereUniqueInput = Prisma.AtLeast<{
   providerReference?: Prisma.StringNullableFilter<"Transaction"> | string | null
   phoneNumber?: Prisma.StringNullableFilter<"Transaction"> | string | null
   metadata?: Prisma.JsonNullableFilter<"Transaction">
-  providerRequestId?: Prisma.StringNullableFilter<"Transaction"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
+  providerRequestId?: Prisma.StringNullableFilter<"Transaction"> | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "reference">
 
@@ -331,9 +331,9 @@ export type TransactionOrderByWithAggregationInput = {
   providerReference?: Prisma.SortOrderInput | Prisma.SortOrder
   phoneNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder
-  providerRequestId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  providerRequestId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.TransactionCountOrderByAggregateInput
   _avg?: Prisma.TransactionAvgOrderByAggregateInput
   _max?: Prisma.TransactionMaxOrderByAggregateInput
@@ -355,9 +355,9 @@ export type TransactionScalarWhereWithAggregatesInput = {
   providerReference?: Prisma.StringNullableWithAggregatesFilter<"Transaction"> | string | null
   phoneNumber?: Prisma.StringNullableWithAggregatesFilter<"Transaction"> | string | null
   metadata?: Prisma.JsonNullableWithAggregatesFilter<"Transaction">
-  providerRequestId?: Prisma.StringNullableWithAggregatesFilter<"Transaction"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Transaction"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Transaction"> | Date | string
+  providerRequestId?: Prisma.StringNullableWithAggregatesFilter<"Transaction"> | string | null
 }
 
 export type TransactionCreateInput = {
@@ -370,9 +370,9 @@ export type TransactionCreateInput = {
   providerReference?: string | null
   phoneNumber?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  providerRequestId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  providerRequestId?: string | null
   user: Prisma.UserCreateNestedOneWithoutTransactionsInput
 }
 
@@ -387,9 +387,9 @@ export type TransactionUncheckedCreateInput = {
   providerReference?: string | null
   phoneNumber?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  providerRequestId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  providerRequestId?: string | null
 }
 
 export type TransactionUpdateInput = {
@@ -402,9 +402,9 @@ export type TransactionUpdateInput = {
   providerReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  providerRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  providerRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutTransactionsNestedInput
 }
 
@@ -419,9 +419,9 @@ export type TransactionUncheckedUpdateInput = {
   providerReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  providerRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  providerRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TransactionCreateManyInput = {
@@ -435,9 +435,9 @@ export type TransactionCreateManyInput = {
   providerReference?: string | null
   phoneNumber?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  providerRequestId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  providerRequestId?: string | null
 }
 
 export type TransactionUpdateManyMutationInput = {
@@ -450,9 +450,9 @@ export type TransactionUpdateManyMutationInput = {
   providerReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  providerRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  providerRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TransactionUncheckedUpdateManyInput = {
@@ -466,9 +466,9 @@ export type TransactionUncheckedUpdateManyInput = {
   providerReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  providerRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  providerRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TransactionListRelationFilter = {
@@ -492,9 +492,9 @@ export type TransactionCountOrderByAggregateInput = {
   providerReference?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrder
   metadata?: Prisma.SortOrder
-  providerRequestId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  providerRequestId?: Prisma.SortOrder
 }
 
 export type TransactionAvgOrderByAggregateInput = {
@@ -512,9 +512,9 @@ export type TransactionMaxOrderByAggregateInput = {
   provider?: Prisma.SortOrder
   providerReference?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrder
-  providerRequestId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  providerRequestId?: Prisma.SortOrder
 }
 
 export type TransactionMinOrderByAggregateInput = {
@@ -527,9 +527,9 @@ export type TransactionMinOrderByAggregateInput = {
   provider?: Prisma.SortOrder
   providerReference?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrder
-  providerRequestId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  providerRequestId?: Prisma.SortOrder
 }
 
 export type TransactionSumOrderByAggregateInput = {
@@ -597,9 +597,9 @@ export type TransactionCreateWithoutUserInput = {
   providerReference?: string | null
   phoneNumber?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  providerRequestId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  providerRequestId?: string | null
 }
 
 export type TransactionUncheckedCreateWithoutUserInput = {
@@ -612,9 +612,9 @@ export type TransactionUncheckedCreateWithoutUserInput = {
   providerReference?: string | null
   phoneNumber?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  providerRequestId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  providerRequestId?: string | null
 }
 
 export type TransactionCreateOrConnectWithoutUserInput = {
@@ -657,9 +657,9 @@ export type TransactionScalarWhereInput = {
   providerReference?: Prisma.StringNullableFilter<"Transaction"> | string | null
   phoneNumber?: Prisma.StringNullableFilter<"Transaction"> | string | null
   metadata?: Prisma.JsonNullableFilter<"Transaction">
-  providerRequestId?: Prisma.StringNullableFilter<"Transaction"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
+  providerRequestId?: Prisma.StringNullableFilter<"Transaction"> | string | null
 }
 
 export type TransactionCreateManyUserInput = {
@@ -672,9 +672,9 @@ export type TransactionCreateManyUserInput = {
   providerReference?: string | null
   phoneNumber?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  providerRequestId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  providerRequestId?: string | null
 }
 
 export type TransactionUpdateWithoutUserInput = {
@@ -687,9 +687,9 @@ export type TransactionUpdateWithoutUserInput = {
   providerReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  providerRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  providerRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TransactionUncheckedUpdateWithoutUserInput = {
@@ -702,9 +702,9 @@ export type TransactionUncheckedUpdateWithoutUserInput = {
   providerReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  providerRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  providerRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TransactionUncheckedUpdateManyWithoutUserInput = {
@@ -717,9 +717,9 @@ export type TransactionUncheckedUpdateManyWithoutUserInput = {
   providerReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  providerRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  providerRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -735,9 +735,9 @@ export type TransactionSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   providerReference?: boolean
   phoneNumber?: boolean
   metadata?: boolean
-  providerRequestId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  providerRequestId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["transaction"]>
 
@@ -752,9 +752,9 @@ export type TransactionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   providerReference?: boolean
   phoneNumber?: boolean
   metadata?: boolean
-  providerRequestId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  providerRequestId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["transaction"]>
 
@@ -769,9 +769,9 @@ export type TransactionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   providerReference?: boolean
   phoneNumber?: boolean
   metadata?: boolean
-  providerRequestId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  providerRequestId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["transaction"]>
 
@@ -786,12 +786,12 @@ export type TransactionSelectScalar = {
   providerReference?: boolean
   phoneNumber?: boolean
   metadata?: boolean
-  providerRequestId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  providerRequestId?: boolean
 }
 
-export type TransactionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "type" | "status" | "amount" | "reference" | "provider" | "providerReference" | "phoneNumber" | "metadata" | "providerRequestId" | "createdAt" | "updatedAt", ExtArgs["result"]["transaction"]>
+export type TransactionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "type" | "status" | "amount" | "reference" | "provider" | "providerReference" | "phoneNumber" | "metadata" | "createdAt" | "updatedAt" | "providerRequestId", ExtArgs["result"]["transaction"]>
 export type TransactionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -818,9 +818,9 @@ export type $TransactionPayload<ExtArgs extends runtime.Types.Extensions.Interna
     providerReference: string | null
     phoneNumber: string | null
     metadata: runtime.JsonValue | null
-    providerRequestId: string | null
     createdAt: Date
     updatedAt: Date
+    providerRequestId: string | null
   }, ExtArgs["result"]["transaction"]>
   composites: {}
 }
@@ -1255,9 +1255,9 @@ export interface TransactionFieldRefs {
   readonly providerReference: Prisma.FieldRef<"Transaction", 'String'>
   readonly phoneNumber: Prisma.FieldRef<"Transaction", 'String'>
   readonly metadata: Prisma.FieldRef<"Transaction", 'Json'>
-  readonly providerRequestId: Prisma.FieldRef<"Transaction", 'String'>
   readonly createdAt: Prisma.FieldRef<"Transaction", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Transaction", 'DateTime'>
+  readonly providerRequestId: Prisma.FieldRef<"Transaction", 'String'>
 }
     
 

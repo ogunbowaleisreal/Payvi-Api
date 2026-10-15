@@ -32,4 +32,12 @@ export class AccountService {
 
         return toUserResponse(user);
     }
+
+    async getUserProfile(
+        userId: number
+    ) {
+        return await this.userRepository.findUserById(userId)
+
+    }
+
 }

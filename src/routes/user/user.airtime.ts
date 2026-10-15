@@ -23,5 +23,13 @@ router.post(
     )
 );
 
+router.get(
+    "/airtime/:transactionId/requery",
+    ClientAuthMiddleware,
+    airtimeController
+        .requeryAirtimeTransaction
+        .bind(airtimeController)
+);
+
 
 export default router;
